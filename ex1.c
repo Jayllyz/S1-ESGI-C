@@ -19,28 +19,30 @@ int main(int argc, char **argv) {
         switch (n) {
             // Lance le programme.
             case 1:
-                // Code block d'Antony
-                for(i = 0; i < n + 1; i++) {
-                    for(j = 0; j <= i; j++) {
-                        printf("*");
+                printf("Entrez le nombre de lignes: ");
+                scanf("%d", &n);
+
+                // Ligne 1 à n / 2
+                for (i = 0; i < n / 2; i++) {
+                    for (j = 0; j <= i; j++) {
+                        printf("* ");
                     }
-                    for(j = i; j <= n; j++) {
-                        printf(" ");
+                    for (j = i + 2; i + j < n; j++) {
+                        printf("  ");
                     }
-                    for(k = i; k < n; k++) {
-                        printf(" ");
-                    }
-                    for(j = 0; j <= i; j++) {
-                        printf("*");
+                    for (k = 0; k <= n - j; k++) {
+                        printf("* ");
                     }
                     printf("\n");
                 }
 
-                for(k = 0; k < n * 2 + 3; k++) // Ligne centrale (maybe autre technique)
-                    printf("*");
+                // Ligne centrale
+                for (i = 0; i < n; i++) {
+                    printf("* ");
+                }
+                printf("\n");
 
                 for(i = 0; i < n + 1; i++) {
-                    printf("\n");
                     for(j = i; j <= n; j++) {
                         printf("*");
                     }
