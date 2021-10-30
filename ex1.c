@@ -7,13 +7,13 @@
 #include <stdio.h>
 
 int main(int argc, char **argv) {
-    char n;       // Nombre de lignes constituant le pattern.
+    char n; // Nombre de lignes constituant le pattern.
     char i, j, k; // Variable pour les boucles.
     char running = 1; //1: le programme est répété, 0: le programme s'arrête. 
 
     do {
         printf("Exercice 1 :\n1. Lancer\n2. Quitter\nEntrez votre choix: ");
-        fflush(stdin);
+        fflush(stdin); // Vide le buffer d'entrées pour éviter les conflits
         scanf("%d", &n); // La variable n sert également à stocker le choix de l'utilisateur
 
         switch (n) {
