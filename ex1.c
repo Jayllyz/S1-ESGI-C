@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 int main(int argc, char **argv) {
-    char n; // Nombre de lignes constituant le pattern.
+    int n; // Nombre de lignes constituant le pattern.
     char i, j, k; // Variable pour les boucles.
     char running = 1; //1: le programme est répété, 0: le programme s'arrête. 
 
@@ -19,7 +19,42 @@ int main(int argc, char **argv) {
         switch (n) {
             // Lance le programme.
             case 1:
-                printf("*running*\n");
+                // Code block d'Antony
+                for(i = 0; i < n + 1; i++) {
+                    for(j = 0; j <= i; j++) {
+                        printf("*");
+                    }
+                    for(j = i; j <= n; j++) {
+                        printf(" ");
+                    }
+                    for(k = i; k < n; k++) {
+                        printf(" ");
+                    }
+                    for(j = 0; j <= i; j++) {
+                        printf("*");
+                    }
+                    printf("\n");
+                }
+
+                for(k = 0; k < n * 2 + 3; k++) // Ligne centrale (maybe autre technique)
+                    printf("*");
+
+                for(i = 0; i < n + 1; i++) {
+                    printf("\n");
+                    for(j = i; j <= n; j++) {
+                        printf("*");
+                    }
+                    for(j = 0; j <= i; j++) {
+                        printf(" ");
+                    } 
+                    for(j = 0; j < i; j++) {
+                        printf(" ");
+                    }
+                    for(j = i; j <= n; j++) {
+                        printf("*");
+                    }
+                }
+                printf("\n");
                 break;
             
             // Arrête le programme.
