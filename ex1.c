@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
                 printf("Entrez le nombre de lignes: ");
                 scanf("%d", &n);
 
-                // Ligne 1 à n / 2
+                // Partie haute
                 for (i = 0; i < n / 2; i++) {
                     for (j = 0; j <= i; j++) {
                         printf("* ");
@@ -42,21 +42,19 @@ int main(int argc, char **argv) {
                 }
                 printf("\n");
 
-                for(i = 0; i < n + 1; i++) {
-                    for(j = i; j <= n; j++) {
-                        printf("*");
+                // Partie basse
+                for(i = 0; i < n / 2; i++) {
+                    for(j = 0; j + i < n; j++) {
+                        printf("* ");
                     }
-                    for(j = 0; j <= i; j++) {
-                        printf(" ");
-                    } 
-                    for(j = 0; j < i; j++) {
-                        printf(" ");
+                    for(j = 0; i - j > 0; j++) {
+                        printf("  ");
                     }
                     for(j = i; j <= n; j++) {
-                        printf("*");
+                        printf("* ");
                     }
-                }
                 printf("\n");
+                }
                 break;
             
             // Arrête le programme.
@@ -73,17 +71,3 @@ int main(int argc, char **argv) {
     
     return 0;
 }
-
-/*
-
-    *               * 
-    * *           * * 
-    * * *       * * * 
-    * * * *   * * * * 
-    * * * * * * * * * 
-    * * * *   * * * * 
-    * * *       * * * 
-    * *           * * 
-    *               * 
-
-*/
