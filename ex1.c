@@ -23,38 +23,38 @@ int main(int argc, char **argv) {
                 scanf("%d", &n);
 
                 // Partie haute
-                for (i = 0; i < n / 2; i++) {
-                    for (j = 0; j <= i; j++) {
+                for (i = 0; i < n / 2; i++) { // n/2 -> nombre de ligne de la figure (partie haute)
+                    for (j = 0; j <= i; j++) { // premier triangle
                         printf("* ");
                     }
-                    for (j = i + 2; i + j < n; j++) {
+                    for (j = i+1; i + j < n; j++) {//"pyramide" d'espace entre les 2 triangles
                         printf("  ");
                     }
-                    for (k = 0; k <= n - j; k++) {
+                    for (k = 0; k <= n - j; k++) {// deuxième triangle
                         printf("* ");
                     }
                     printf("\n");
                 }
 
                 // Ligne centrale
-                for (i = 0; i < n; i++) {
+                for (i = 0; i <= n; i++) {
                     printf("* ");
                 }
                 printf("\n");
 
                 // Partie basse
-                for(i = 0; i < n / 2; i++) {
-                    for(j = 0; j + i < n; j++) {
+                for(i = 0; i < n / 2; i++) {// n/2 -> nombre de ligne de la figure (partie basse)
+                    for(j = 0; j + i < n/2; j++) { // premier triangle
                         printf("* ");
                     }
-                    for(j = 0; i - j > 0; j++) {
+                    for(j = 0; j <= i*2; j++) {//"pyramide" d'espace entre les 2 triangles (i*2 -> pyramide compléte)
                         printf("  ");
                     }
-                    for(j = i; j <= n; j++) {
+                    for(j = i; j < n/2; j++) { // deuxième triangle
                         printf("* ");
                     }
                 printf("\n");
-                }
+                  }
                 break;
             
             // Arrête le programme.
