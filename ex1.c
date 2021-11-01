@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
                     for(j = 0; j + i < n/2; j++) { // premier triangle
                         printf("* ");
                     }
-                    for(j = 0; j <= i*2; j++) {//"pyramide" d'espace entre les 2 triangles (i*2 -> pyramide compléte)
+                    for(j = 0; j <= (n %2 == 0 ? i*2 : i*2 +1); j++) {//"pyramide" d'espace entre les 2 triangles (i*2 -> pyramide compléte)
                         printf("  ");
                     }
                     for(j = i; j < n/2; j++) { // deuxième triangle
