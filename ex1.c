@@ -9,7 +9,7 @@
 int main(int argc, char **argv) {
     int n; // Nombre de lignes constituant le pattern.
     char i, j, k; // Variable pour les boucles.
-    char running = 1; //1: le programme est répété, 0: le programme s'arrête. 
+    char running = 1; // 1: le programme est répété, 0: le programme s'arrête. 
 
     do {
         printf("Exercice 1 :\n1. Lancer\n2. Quitter\nEntrez votre choix: ");
@@ -22,35 +22,42 @@ int main(int argc, char **argv) {
                 printf("Entrez le nombre de lignes: ");
                 scanf("%d", &n);
 
+                if (n == 1) {
+                    printf("* *\n");
+                    break;
+                }
+
                 // Partie haute
-                for (i = 0; i < n / 2; i++) { // n/2 -> nombre de ligne de la figure (partie haute)
-                    for (j = 0; j <= i; j++) { // premier triangle
+                for (i = 0; i < n / 2; i++) { // n / 2 -> nombre de ligne de la figure (partie haute)
+                    for (j = 0; j <= i; j++) { // Premier triangle
                         printf("* ");
                     }
-                    for (j = i+1; i + j < n; j++) {//"pyramide" d'espace entre les 2 triangles
+                    for (j = i + 2; i + j < n; j++) { //"pyramide" d'espace entre les 2 triangles
                         printf("  ");
                     }
-                    for (k = 0; k <= n - j; k++) {// deuxième triangle
+                    for (k = 0; k <= n - j; k++) { // Deuxième triangle
                         printf("* ");
                     }
                     printf("\n");
                 }
 
-                // Ligne centrale
-                for (i = 0; i <= n; i++) {
-                    printf("* ");
-                }
-                printf("\n");
-
-                // Partie basse
-                for(i = 0; i < n / 2; i++) {// n/2 -> nombre de ligne de la figure (partie basse)
-                    for(j = 0; j + i < n/2; j++) { // premier triangle
+                // Ligne centrale uniquement si n est impair
+                if (n % 2 == 1) {
+                    for (i = 0; i < n; i++) {
                         printf("* ");
                     }
-                    for(j = 0; j <= (n %2 == 0 ? i*2 : i*2 +1); j++) {//"pyramide" d'espace entre les 2 triangles (i*2 -> pyramide compléte)
+                    printf("\n");
+                }
+
+                // Partie basse
+                for(i = 0; i < n / 2; i++) { // n / 2 -> nombre de ligne de la figure (partie basse)
+                    for(j = 0; j + i < n/2; j++) { // Premier triangle
+                        printf("* ");
+                    }
+                    for(j = n % 2 == 0 ? 1 : 0; j <= 2 * i; j++) { //"pyramide" d'espace entre les 2 triangles
                         printf("  ");
                     }
-                    for(j = i; j < n/2; j++) { // deuxième triangle
+                    for(j = i; j < n/2; j++) { // Deuxième triangle
                         printf("* ");
                     }
                 printf("\n");
