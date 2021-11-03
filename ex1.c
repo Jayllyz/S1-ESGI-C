@@ -24,10 +24,18 @@ int main(int argc, char **argv) {
             // Lance le programme.
             case 1:
                 printf("Entrez le nombre de lignes (0 pour générer aléatoirement entre 1 et 20): ");
-                if (scanf("%d", &n) != 1) {
-                    printf("ERREUR : Vous n'avez pas entré un nombre.\n");
-                    return EXIT_FAILURE;
-                }
+                do {
+                    if (scanf("%d", &n) != 1) {
+                        printf("ERREUR : Vous n'avez pas entré un nombre.\n");
+                        return EXIT_FAILURE;
+                    }
+                    if (n <0)
+                    {
+                        printf("ERREUR : Nombre négatif, recommencer votre saisie : ");
+                    }
+                    
+                } while (n < 0);
+
                 if (n == 0){
                     n = rand() % 20 + 1;
                     printf("Nombre de lignes aléatoirement généré: %d\n", n);
@@ -81,7 +89,7 @@ int main(int argc, char **argv) {
 
             // Mauvaise valeur tapée par l'utilisateur.
             default:
-                printf("Mauvaise entrée. Taper un chiffre uniquement entre 1 et 2.\n\n");
+                printf("Mauvaise entrée. Taper un chiffre uniquement entre 1 et 2.\n");
                 break;
         }
     } while (running);
