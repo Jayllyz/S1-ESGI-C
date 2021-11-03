@@ -10,7 +10,7 @@
 
 int main(int argc, char **argv) {
     int n=0; // Nombre de lignes constituant le pattern.
-    char i, j, k=0; // Variable pour les boucles.
+    int i, j, k=0; // Variable pour les boucles.
     char running = 1; // 1: le programme est répété, 0: le programme s'arrête. 
     srand(time(NULL)); // Initialisation de la fonction rand().
     do {
