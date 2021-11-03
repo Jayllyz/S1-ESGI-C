@@ -1,3 +1,6 @@
+
+#include <stdio.h>
+
 int main(int argc, char **arg){
     int is_good = 0; // variable permettant de savoir si le nombre est magique
     unsigned short number = 0;

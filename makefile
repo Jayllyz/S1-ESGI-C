@@ -1,6 +1,6 @@
-ll: PROJET EXCUTION
-PROJET: ex1.c
-	gcc -o EXEC  ex1.c -Wall
+all: PROJET EXCUTION
+PROJET: ex2.c
+	gcc -o EXEC  ex2.c -Wall
 	
 EXCUTION: EXEC
 	./EXEC
