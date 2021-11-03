@@ -1,11 +1,15 @@
-
+/*
+    Objectif : Définir si un nombre est magique
+    Autheurs : Anto BENEDETTI, Antony DAVID, Anthony JABRE
+    Date     : 02/11/2021
+*/
 #include <stdio.h>
 
 int main(int argc, char **arg){
     int is_good = 0; // variable permettant de savoir si le nombre est magique
     unsigned short number = 0;
     unsigned short getAddNumber;
-    printf("ur number pls ? \n");
+    printf("Votre nombre (0-99) ? \n");
     scanf("%hu", &number);
 
     // premier cas le nombre que l'on nous donne comporte 2 chiffres
