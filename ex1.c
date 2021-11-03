@@ -5,24 +5,34 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main(int argc, char **argv) {
-    int n; // Nombre de lignes constituant le pattern.
-    char i, j, k; // Variable pour les boucles.
+    int n=0; // Nombre de lignes constituant le pattern.
+    char i, j, k=0; // Variable pour les boucles.
     char running = 1; // 1: le programme est répété, 0: le programme s'arrête. 
-
+    srand(time(NULL)); // Initialisation de la fonction rand().
     do {
         printf("Exercice 1 :\n1. Lancer\n2. Quitter\nEntrez votre choix: ");
         fflush(stdin); // Vide le buffer d'entrées pour éviter les conflits
-        scanf("%d", &n); // La variable n sert également à stocker le choix de l'utilisateur
-
+        if (scanf("%d", &n) != 1) {
+            printf("ERREUR : Vous n'avez pas entré un nombre.\n");
+            return EXIT_FAILURE;
+        }
         switch (n) {
             // Lance le programme.
             case 1:
-                printf("Entrez le nombre de lignes: ");
-                scanf("%d", &n);
-
-                if (n == 1) {
+                printf("Entrez le nombre de lignes (0 pour générer aléatoirement entre 1 et 20): ");
+                if (scanf("%d", &n) != 1) {
+                    printf("ERREUR : Vous n'avez pas entré un nombre.\n");
+                    return EXIT_FAILURE;
+                }
+                if (n == 0){
+                    n = rand() % 20 + 1;
+                    printf("Nombre de lignes aléatoirement généré: %d\n", n);
+                }
+                if (n == 1){
                     printf("* *\n");
                     break;
                 }
