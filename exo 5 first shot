@@ -29,15 +29,15 @@ int main() {
         scanf("%d",&nb_jour_travail);
     }
 
-    //calcule de la commission
-    if(CA <= 13000)
+    //calcule de la commission (check la sécurité si on rentre un chiffre néagatif)
+    if(CA > 0 && CA <= 13000)
     {
         commission = commission+(CA*1.6)/100;
     }
     else if (CA <= 22000){
         commission = commission+(CA*2.2)/100;
     }
-    else if (CA > 2200){
+    else if (CA > 22000){
         commission = commission+(CA*3)/100;
     }
     else{
