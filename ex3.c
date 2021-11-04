@@ -23,7 +23,6 @@ int main(int argc, char **argv){
     printf("coord b(x,y) :\n");
     fflush(stdin);
     scanf("%lf %lf",&bX,&bY);
-    printf("rentrez les coordonnées afin de rechercher sa zone");
 
     //calcul de largeur et longueur d'une zone
     double horizontal = bX - aX;
@@ -32,7 +31,7 @@ int main(int argc, char **argv){
 
     fflush(stdin);
     // récupération de l'utilisateur des coordonnée a rechercher
-    printf("rentrer les coord x et y a rechercher")
+    printf("Entrer les coord x et y a rechercher :");
     scanf("%lf %lf",&find_aX,&find_aY);
     int find = 0; // stopper le programme si on trouve
     int zone_number_bX;//coordonée Bx et By ou se situe les coord recherché
@@ -59,7 +58,7 @@ int main(int argc, char **argv){
         }
     }
     find = 0;
-
+    
     //boucle afin de trouver dans quelle zone se situe les coord ainsi que définir si il y a des frontières en Y
     for (double j = vertical; j <= vertical*3 && find == 0; j = j + vertical) {
         if (find_aY <= j) {
@@ -84,9 +83,9 @@ int main(int argc, char **argv){
                 new_aY = aY - vertical;
                 new_bX = aX;
                 new_bY = aY;
-                printf("zone 1\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 1\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     if (is_frontier_x_R == 1 && is_frontier_y_down == 0)
@@ -109,9 +108,9 @@ int main(int argc, char **argv){
                 new_aY = aY - vertical;
                 new_bX = aX + horizontal;
                 new_bY = aY;
-                printf("zone 2\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 2\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     if (is_frontier_x_R == 1 && is_frontier_y_down == 0)
@@ -121,7 +120,7 @@ int main(int argc, char **argv){
                     else if (is_frontier_x_R == 0 && is_frontier_y_down == 1)
                         printf("d'ailleur on se trouve zone %d et 4\n",i);
                     else{
-                        printf_s("nous avons une frontiere avec zone 1,2,4 et 5\n");
+                        printf("nous avons une frontiere avec zone 1,2,4 et 5\n");
                     }
                 }
                 break;
@@ -130,9 +129,9 @@ int main(int argc, char **argv){
                 new_aY = aY - vertical;
                 new_bX = aX + 2 * horizontal;
                 new_bY = aY;
-                printf("zone 3\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 3\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     printf("d'ailleur on se trouve zone %d",i);
@@ -143,9 +142,9 @@ int main(int argc, char **argv){
                 new_aY = aY;
                 new_bX = aX;
                 new_bY = aY + vertical;
-                printf("zone 4\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 4\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     printf("d'ailleur on se trouve zone %d",i);
@@ -156,9 +155,9 @@ int main(int argc, char **argv){
                 new_aY = aY;
                 new_bX = bX;
                 new_bY = bY;
-                printf("zone 5\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 5\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     printf("d'ailleur on se trouve zone %d\n",i);
@@ -169,9 +168,9 @@ int main(int argc, char **argv){
                 new_aY = bY - vertical;
                 new_bX = bX + horizontal;
                 new_bY = bY;
-                printf("zone 6\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 6\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     printf("d'ailleur on se trouve zone %d",i);
@@ -182,9 +181,9 @@ int main(int argc, char **argv){
                 new_aY = bY;
                 new_bX = aX;
                 new_bY = bY + vertical;
-                printf("zone 7\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 7\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     printf("d'ailleur on se trouve zone %d",i);
@@ -195,9 +194,9 @@ int main(int argc, char **argv){
                 new_aY = bY;
                 new_bX = bX;
                 new_bY = bY + vertical;
-                printf("zone 8\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 8\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     printf("d'ailleur on se trouve zone %d",i);
@@ -208,9 +207,9 @@ int main(int argc, char **argv){
                 new_aY = bY;
                 new_bX = bX + horizontal;
                 new_bY = bY + vertical;
-                printf("zone 9\n");
-                printf("coord a(%lf,%lf) \n", new_aX, new_aY);
-                printf("coord b(%lf,%lf) \n", new_bX, new_bY);
+                printf("\n================================\nzone 9\n");
+                printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
+                printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
                     printf("d'ailleur on se trouve zone %d",i);
