@@ -31,7 +31,7 @@ int main(int argc, char **argv){
 
     fflush(stdin);
     // récupération de l'utilisateur des coordonnée a rechercher
-    printf("Entrer les coord x et y a rechercher :");
+    printf("Entrer les coord x et y a rechercher :\n");
     scanf("%lf %lf",&find_aX,&find_aY);
     int find = 0; // stopper le programme si on trouve
     int zone_number_bX;//coordonée Bx et By ou se situe les coord recherché
@@ -40,7 +40,7 @@ int main(int argc, char **argv){
     // booléen visant a savoir si il existe une frontière en x a gauche (L = left) de la zone ou a droite (R = rigth)
     int is_frontier_x_R = 0;
     int is_frontier_x_L = 0;
-    int is_frontier_y_up = 0;
+    //int is_frontier_y_up = 0;
     int is_frontier_y_down = 0;
 
     //boucle afin de trouver dans quelle zone se situe les coord ainsi que définir si il y a des frontières en X
@@ -58,17 +58,13 @@ int main(int argc, char **argv){
         }
     }
     find = 0;
-    
+
     //boucle afin de trouver dans quelle zone se situe les coord ainsi que définir si il y a des frontières en Y
     for (double j = vertical; j <= vertical*3 && find == 0; j = j + vertical) {
         if (find_aY <= j) {
             if (find_aY == j)
             {
                 is_frontier_y_down = 1;
-            }
-            if (find_aY == j-vertical)
-            {
-                is_frontier_y_up = 1;
             }
             zone_number_bY = j;
             find = 1;
@@ -90,16 +86,20 @@ int main(int argc, char **argv){
                 {
                     if (is_frontier_x_R == 1 && is_frontier_y_down == 0)
                     {
-                        printf("ducoup on se trouve zone %d et 2\n",i);
+                        printf("On se trouve zone %d et 2\n",i);
                     }
-                    else if (is_frontier_x_R == 0 && is_frontier_y_down == 1)
-                    printf("d'ailleur on se trouve zone %d et 4\n",i);
+                    else if (is_frontier_x_R == 0 && is_frontier_y_down == 1){
+                        printf("On se trouve zone%d et 4\n",i);
+                    }
                     else if (is_frontier_x_R == 1 && is_frontier_y_down == 1){
-                        printf("nous avons une frontiere avec zone 1,2,4 et 5\n");
+                        printf("Nous avons une frontiere avec zone 1,2,4 et 5\n");
+                    }
+                    else if(is_frontier_x_L == 1 && is_frontier_y_down == 1){
+                        printf("Nous avons une frontiere avec zone %d et 4\n",i);
                     }
                     else
                     {
-                        printf("nous somme zone 1");
+                        printf("On se trouve zone %d",i);
                     }
                 }
                 break;
@@ -115,12 +115,18 @@ int main(int argc, char **argv){
                 {
                     if (is_frontier_x_R == 1 && is_frontier_y_down == 0)
                     {
-                        printf("ducoup on se trouve zone %d et 2\n",i);
+                        printf("Nous avons une frontiere avec %d et 3\n",i);
                     }
                     else if (is_frontier_x_R == 0 && is_frontier_y_down == 1)
-                        printf("d'ailleur on se trouve zone %d et 4\n",i);
+                        printf("d'ailleur on se trouve zone %d et 5\n",i);
+                    else if(is_frontier_x_R == 1 && is_frontier_y_down == 1){
+                        printf("nous avons une frontiere avec zone 2,3,5 et 6\n");
+                    }
+                    else if (is_frontier_x_L == 0 && is_frontier_y_down == 1){
+                        printf("nous avons une frontiere avec %d et 5\n",i);
+                    }
                     else{
-                        printf("nous avons une frontiere avec zone 1,2,4 et 5\n");
+                        printf("On se trouve zone %d\n",i);
                     }
                 }
                 break;
@@ -134,7 +140,14 @@ int main(int argc, char **argv){
                 printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
-                    printf("d'ailleur on se trouve zone %d",i);
+                   if(is_frontier_x_L == 0  && is_frontier_y_down == 1){
+                       printf("nous avons une frontiere avec %d et 6\n",i);
+                   }
+                   else if(is_frontier_x_R == 1 && is_frontier_y_down == 1){
+                       printf("nous avons une frontiere avec zone %d et 6\n",i);
+                    else{
+                        printf("On se trouve zone %d\n",i);
+                    }
                 }
                 break;
             case 4 :
@@ -147,7 +160,19 @@ int main(int argc, char **argv){
                 printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
-                    printf("d'ailleur on se trouve zone %d",i);
+                    if(is_frontier_x_R == 1  && is_frontier_y_down == 0){
+                       printf("nous avons une frontiere avec %d et 5\n",i);
+                   }else if(is_frontier_x_R == 1 && is_frontier_y_down ==1){
+                       printf("nous avons une frontiere avec %d,5,7 et 8\n",i);
+                   }
+                    else if(is_frontier_x_R == 0 && is_frontier_y_down ==1){
+                       printf("nous avons une frontiere avec %d et 7 \n",i);
+                    }else if(is_frontier_x_L == 1 && is_front_y_down ==1){
+                        printf("nous avons une frontiere avec %d et 7",i);
+                    }
+                    else{
+                        printf("On se trouve zone %d\n",i);
+                    }
                 }
                 break;
             case 5 :
@@ -160,7 +185,17 @@ int main(int argc, char **argv){
                 printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
-                    printf("d'ailleur on se trouve zone %d\n",i);
+                    if(is_frontier_x_R == 1  && is_frontier_y_down == 0){
+                       printf("nous avons une frontiere avec %d et 6\n",i);
+                   }else if(is_frontier_x_R == 1 && is_frontier_y_down ==1){
+                       printf("nous avons une frontiere avec %d,6,8 et 9\n",i);
+                   }
+                    else if(is_frontier_x_R == 0 && is_frontier_y_down ==1){
+                       printf("nous avons une frontiere avec %d et 8 \n",i);
+                    }
+                    else{
+                        printf("On se trouve zone %d\n",i);
+                    }
                 }
                 break;
             case 6 :
@@ -173,7 +208,18 @@ int main(int argc, char **argv){
                 printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
-                    printf("d'ailleur on se trouve zone %d",i);
+                    if(is_frontier_x_L == 0  && is_frontier_y_down == 1){
+                       printf("nous avons une frontiere avec %d et 9\n",i);
+                   }
+                   else if(is_frontier_x_L == 1  && is_frontier_y_down == 1){
+                       printf("nous avons une frontiere avec %d,8 et 9\n",i);
+                   }
+                   else if(is_frontier_x_R == 1  && is_frontier_y_down == 1){
+                       printf("nous avons une frontiere avec %d et 9\n",i);
+                   }
+                    else{
+                       printf("On se trouve zone %d\n",i);
+                    }
                 }
                 break;
             case 7 :
@@ -186,7 +232,11 @@ int main(int argc, char **argv){
                 printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
-                    printf("d'ailleur on se trouve zone %d",i);
+                    if(is_frontier_x_R == 1  && is_frontier_y_down == 0){
+                       printf("nous avons une frontiere avec %d et 8\n",i);
+                   }else{
+                       printf("On se trouve zone %d\n",i);
+                   }
                 }
                 break;
             case 8 :
@@ -199,7 +249,11 @@ int main(int argc, char **argv){
                 printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
                 if (zone_number_bX == new_bX && zone_number_bY == new_bY)
                 {
-                    printf("d'ailleur on se trouve zone %d",i);
+                    if(is_frontier_x_R == 1  && is_frontier_y_down == 0){
+                       printf("nous avons une frontiere avec %d et 9\n",i);
+                   }else{
+                       printf("On se trouve zone %d\n",i);
+                   }
                 }
                 break;
             case 9 :
@@ -210,9 +264,8 @@ int main(int argc, char **argv){
                 printf("\n================================\nzone 9\n");
                 printf("coord a(%.2lf,%.2lf) \n", new_aX, new_aY);
                 printf("coord b(%.2lf,%.2lf) \n", new_bX, new_bY);
-                if (zone_number_bX == new_bX && zone_number_bY == new_bY)
-                {
-                    printf("d'ailleur on se trouve zone %d",i);
+                if (zone_number_bX == new_bX && zone_number_bY == new_bY){
+                       printf("On se trouve zone %d\n",i);
                 }
                 break;
         }
