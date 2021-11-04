@@ -14,19 +14,19 @@ int main() {
     double trajet_km;
     scanf("%lf",&trajet_km);
 
-    double commission;
-    double indemnite;
+    double commission = 0;
+    double indemnite = 0;
     int indemnite_etranger = 0;
     printf("l'employe de se trouve t'il a l'etranger ? appuyer sur 1 pour oui et 0 pour non\n");
     fflush(stdin);
-    scanf("%lf",&indemnite_etranger);
+    scanf("%d",&indemnite_etranger);
 
     //calcule de l'indemnité si le commercial travaille a l'étranger
     if (indemnite_etranger)
     {
         fflush(stdin);
         printf("combien de jour a travaille l'employer ?\n");
-        scanf("lf",&nb_jour_travail);
+        scanf("%d",&nb_jour_travail);
     }
 
     //calcule de la commission
@@ -43,6 +43,7 @@ int main() {
     else{
         commission = 100;
     }
+    printf("%d",nb_jour_travail);
 
     //calcul de l'indemnite de trajet
     indemnite = 0.5 * trajet_km;
