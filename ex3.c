@@ -1,8 +1,14 @@
+/*
+    Objectif : Exercice 3
+    Autheurs : Anto BENEDETTI, Antony DAVID, Anthony JABRE
+*/
 #include <stdio.h>
+#include <stdlib.h>
 
 
 int main(int argc, char **argv){
-    int running=0;
+    int running=1;
+    int n=0;
     // coordonnées de base
     double aX=0;
     double aY=0;
@@ -25,7 +31,7 @@ int main(int argc, char **argv){
             printf("ERREUR : Vous n'avez pas entré un nombre.\n");
             return EXIT_FAILURE;
         }
-        switch (running) {
+        switch (n) {
             case 1:
                 // récupération des coord de l'utilisateur
                 printf("coord a(x,y) :\n");
