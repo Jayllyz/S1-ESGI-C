@@ -1,0 +1,6 @@
+all: PROJET EXCUTION
+PROJET: ex5.c
+	gcc -o EXEC ex5.c -Wall
+	
+EXCUTION: EXEC
+	./EXEC
