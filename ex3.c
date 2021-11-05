@@ -25,7 +25,7 @@ int main(int argc, char **argv){
 
 
  do {
-        printf("Exercice 1 :\n1. Lancer\n2. Quitter\nEntrez votre choix: ");
+        printf("Exercice 3 :\n1. Lancer\n2. Quitter\nEntrez votre choix: ");
         fflush(stdin); // Vide le buffer d'entrées pour éviter les conflits
         if(scanf("%d", &n) != 1) {
             printf("ERREUR : Vous n'avez pas entré un nombre.\n");
