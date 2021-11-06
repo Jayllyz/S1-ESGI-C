@@ -13,6 +13,8 @@ int main(int argc, char **argv){
     int bDecimal=0;
     int aBinary=0;
     int modulo=0;
+    int numberOf1=0;
+    int numberOf0=0;
     int j=1;
     int i = aDecimal;
     int temp = aDecimal;
@@ -27,8 +29,9 @@ int main(int argc, char **argv){
         switch (n) {
             // Lance le programme.
             case 1:
-                printf("a b ?\n");
+                printf("Votre intervalle [a,b] ?\n");
                 scanf("%d %d",&aDecimal,&bDecimal);
+                printf("\n");
                 //si aDecimal > bDecimal, on inverse les deux
                 if(aDecimal > bDecimal){
                     temp = aDecimal;
@@ -40,16 +43,27 @@ int main(int argc, char **argv){
                     temp = i;
                         while (i!=0) {  
                             modulo = i % 2;
+                            if (modulo == 1) {
+                                numberOf1++;
+                            }
+                            else {
+                                numberOf0++;
+                            }
                             i /= 2;
                             aBinary += modulo * j;
                             j *= 10;
                         }
-                    printf("%d\n", aBinary);
+                    if(numberOf1 == numberOf0){
+                        printf("%d,",aBinary);
+                    }
                     i = temp;
                     aBinary=0;
                     modulo=0;
                     j=1;
+                    numberOf0=0;
+                    numberOf1=0;
                 }
+                printf("\n\n");
                 break;
             case 2: 
                 running = 0; 
@@ -57,5 +71,6 @@ int main(int argc, char **argv){
         }
 
     } while (running);
+
     return 0;
 }
