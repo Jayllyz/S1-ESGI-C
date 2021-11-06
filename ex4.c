@@ -29,6 +29,13 @@ int main(int argc, char **argv){
             case 1:
                 printf("a b ?\n");
                 scanf("%d %d",&aDecimal,&bDecimal);
+                //si aDecimal > bDecimal, on inverse les deux
+                if(aDecimal > bDecimal){
+                    temp = aDecimal;
+                    aDecimal = bDecimal;
+                    bDecimal = temp;
+                }
+                
                 for( i=aDecimal; i<=bDecimal; i++){
                     temp = i;
                         while (i!=0) {  
