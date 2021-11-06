@@ -9,15 +9,15 @@
 int main(int argc, char **argv){
     int n=0;
     int running=1;
-    int aDecimal=0;
-    int bDecimal=0;
-    int aBinary=0;
-    int modulo=0;
+    long long int aDecimal=0;
+    long long int bDecimal=0;
+    long long int aBinary=0;
+    long long int modulo=0;
     int numberOf1=0;
     int numberOf0=0;
-    int j=1;
-    int i = aDecimal;
-    int temp = aDecimal;
+    long long int j=1;
+    long long int i = aDecimal;
+    long long int temp = aDecimal;
     do
     {
         printf("Exercice 4 :\n1. Lancer\n2. Quitter\nEntrez votre choix: ");
@@ -30,7 +30,7 @@ int main(int argc, char **argv){
             // Lance le programme.
             case 1:
                 printf("Votre intervalle [a,b] ?\n");
-                scanf("%d %d",&aDecimal,&bDecimal);
+                scanf("%lld %lldd",&aDecimal,&bDecimal);
                 printf("\n");
                 //si aDecimal > bDecimal, on inverse les deux
                 if(aDecimal > bDecimal){
@@ -54,7 +54,7 @@ int main(int argc, char **argv){
                             j *= 10;
                         }
                     if(numberOf1 == numberOf0){
-                        printf("%d,",aBinary);
+                        printf("%lld,",aBinary);
                     }
                     i = temp;
                     aBinary=0;
