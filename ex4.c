@@ -10,6 +10,8 @@ int main(int argc, char **argv){
     //variable sécurité
     int n=0;
     int running=1;
+    int goodT=0;
+    int good=0;
 
     //variable boucle principal
     long long int aDecimal=0;
@@ -29,8 +31,7 @@ int main(int argc, char **argv){
     int find_first_0 = 0;
     long long int binary_negative;
     long long int binary_switch = 0;
-    long long int final_binary_negative = 0;
-    int actual_value;
+    long long int actual_value;
 
     do
     {
@@ -118,10 +119,6 @@ int main(int argc, char **argv){
                             binary_negative = binary_negative/10;
                         }
 
-                        //stockage de notre binaire finale dans final_binary_negative afin de le print pour
-                        // plus de compréhension du code (possible de le retirer)
-                        final_binary_negative = binary_switch;
-
                         // check du cas ou lon fini avec un binary_switch égal a 0
                         if(binary_switch == 0)
                         {
@@ -146,12 +143,19 @@ int main(int argc, char **argv){
 
                     //comparaison du nb de 0 et 1 pour savoir quelle variable print
                     // (abinary si le nb est positif) (binary_switch si le nb était négatif)
-                    if(numberOf1 == numberOf0 && !negative) {
-                        printf("%lld in binary and %d in decimal\n", aBinary,actual_value);
-                    }
-                    else if (numberOf1 == numberOf0)
+
+                    if (numberOf1 == numberOf0 && good == 0)
                     {
-                        printf("%lld in binary et %d in decimal\n",final_binary_negative,actual_value);
+                        goodT = actual_value;
+                        good++;
+                    }
+                    else if(numberOf1 == numberOf0 && good != 0 )
+                    {
+                        printf("%d,",goodT);
+                        goodT = actual_value;
+                    }if(numberOf1 == numberOf0 && good != 0 && temp == bDecimal)
+                    {
+                        printf("et %lld",actual_value);
                     }
 
                     //reset de l'ensemble des variables pour le prochain cas
@@ -159,7 +163,6 @@ int main(int argc, char **argv){
                     aBinary=0;
                     negative = 0;
                     binary_switch = 0;
-                    final_binary_negative = 0;
                     find_first_0 = 0;
                     j=1;
                     numberOf0=0;
@@ -171,6 +174,8 @@ int main(int argc, char **argv){
                 running = 0;
                 break;
         }
+        goodT=0;
+        good=0;
 
     } while (running);
 
