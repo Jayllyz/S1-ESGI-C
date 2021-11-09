@@ -18,19 +18,19 @@ int main(int argc, char **argv){
     long long int modulo;
 
     //variable de comptage
-    int numberOf1=0;
-    int numberOf0=0;
+    long long int numberOf1=0;
+    long long int numberOf0=0;
     long long int j=1;
     long long int i;
     long long int temp;
 
     //varibale pour la conversion d'un nb négatif
-    int negative = 0;
-    int find_first_1 = 1;
+    long long int negative = 0;
+    long long int find_first_1 = 1;
     long long int binary_negative;
     long long int binary_switch = 0;
     long long int binary_compare;
-    int actual_value;
+    long long int actual_value;
 
     do
     {
@@ -44,7 +44,7 @@ int main(int argc, char **argv){
             // Lance le programme.
             case 1:
                 printf("Votre intervalle [a,b] ?\n");
-                scanf("%lld %lldd",&aDecimal,&bDecimal);
+                scanf("%lld %lld",&aDecimal,&bDecimal);
                 printf("\n");
                 //si aDecimal > bDecimal, on inverse les deux
                 if(aDecimal > bDecimal){
@@ -126,11 +126,11 @@ int main(int argc, char **argv){
                     //comparaison du nb de 0 et 1 pour savoir quelle variable print
                     // (abinary si le nb est positif) (binary_switch si le nb était négatif)
                     if(numberOf1 == numberOf0 && !negative) {
-                        printf("%lld in binary and %d in decimal\n", aBinary,actual_value);
+                        printf("%lld,",actual_value);
                     }
                     else if (numberOf1 == numberOf0)
                     {
-                        printf("%lld in binary et %d in decimal\n",binary_switch,actual_value);
+                        printf("%lld,",actual_value);
                     }
 
                     //reset de l'ensemble des variables pour le prochain cas
@@ -142,6 +142,7 @@ int main(int argc, char **argv){
                     j=1;
                     numberOf0=0;
                     numberOf1=0;
+                    actual_value = 0;
                 }
                 printf("\n\n");
                 break;
