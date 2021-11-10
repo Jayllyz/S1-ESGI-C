@@ -89,7 +89,7 @@ int main(int argc, char **arg) {
                     char second = number % 10;
                     char test_number = first;
                     char first_add_number = 0; //addition des barres des chiffre du nombre
-                    printf("Premier nombre:%d\ndeuxieme: %d\nnombre de base: %d\n", first, second, number);
+                    printf("Premier chiffre :%d\nDeuxieme chiffre : %d\nNombre de base : %d\n", first, second, number);
                     getAddNumber = first + second; //addition des 2 chifffres
                     printf("%d + %d = %d\n", first, second, getAddNumber);
 
@@ -141,7 +141,7 @@ int main(int argc, char **arg) {
                     }
                     // Si le nombre de barres des 2 chiffres composant le nombre
                     // et la somme des 2 chiffres sont égaux,
-                    // on met la variable is_good a 1 afon d'indiquer que c'est un nombre magique
+                    // on affecte la valeur 1 à "is_good" afin d'indiquer que c'est un nombre magique.
                     if (first_add_number == getAddNumber)
                         is_good = 1;
                     else
@@ -158,10 +158,15 @@ int main(int argc, char **arg) {
                 }
 
                 // Test final pour voir si c'est un nombre magique
-                if (is_good)
+                if (is_good && number < 10)
                     printf("Le chiffre est magique.\n");
-                else
+                else if (is_good && number >= 10)
+                    printf("Le nombre est magique.\n");
+                else if (number < 10)
                     printf("Le chiffre n'est pas magique.\n");
+                else
+                    printf("Le nombre n'est pas magique.\n");
+                
                 break;
 
 

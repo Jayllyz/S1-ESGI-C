@@ -1,4 +1,5 @@
-- Fix lorsque l'utilisateur entrer un très grand nombre (ex : 999999999999) ;
+- Fix lorsque l'utilisateur entre un très grand nombre (ex : 999999999999) ;
+- Fix lorsque l'utilisateur entre un caractère spécial (ex : 'ù') ;
 - Ajouter une vérification pour les nombres décimaux ;
 - Test final : changer le texte final (écrire "chiffre" si number < 10, sinon, écrire "nombre") ;
 - Amélioration des commentaires, présentation, ...
