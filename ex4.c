@@ -146,16 +146,23 @@ int main(int argc, char **argv){
 
                     if (numberOf1 == numberOf0 && good == 0)
                     {
-                        goodT = actual_value;
-                        good++;
+                        goodT = actual_value;//le premier bon nombre est dans goodT
+                        good++; //on increment
                     }
-                    else if(numberOf1 == numberOf0 && good != 0 )
+                    else if(numberOf1 == numberOf0 && good == 1)
                     {
-                        printf("%d,",goodT);
+                        printf("%d",goodT);//le premier bon nombre
                         goodT = actual_value;
-                    }if(numberOf1 == numberOf0 && good != 0 && temp == bDecimal)
+                        good++; //on increment
+                    }
+                    else if(numberOf1 == numberOf0 && good > 1)
                     {
-                        printf("et %lld",actual_value);
+                        printf(",%d",goodT);//on rajoute une , pour les prochains
+                        goodT = actual_value;
+                    }
+                    if(numberOf1 == numberOf0 && good != 0 && temp == bDecimal)
+                    {
+                        printf(" et %lld",actual_value);
                     }
 
                     //reset de l'ensemble des variables pour le prochain cas
