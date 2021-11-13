@@ -143,11 +143,9 @@ do
                 }
 
                 //comparaison du nb de 0 et 1 pour savoir si on print ou non
-
                 if (numberOf1 == numberOf0 && goodCounter == 0){
                     goodValue = actual_value;//le premier bon nombre est dans goodValue
                     goodCounter++; //on increment
-                    
                 }
                 else if(numberOf1 == numberOf0 && goodCounter == 1){
                     
@@ -172,7 +170,6 @@ do
                     printf("%lld",goodValue);
                 }
 
-
                 //reset de l'ensemble des variables pour le prochain cas
                 i = temp;
                 aBinary=0;
@@ -182,6 +179,9 @@ do
                 j=1;
                 numberOf0=0;
                 numberOf1=0;
+            }
+            if(goodValue == 0){
+                printf("\nAucun nombre sympatique trouvé dans [%lld,%lld]\n",aDecimal,bDecimal);
             }
             printf("\n\n");
             break;
