@@ -157,10 +157,10 @@ do
                     printf(",%lld",goodValue);//on rajoute une , pour les prochains
                     goodValue = actual_value;
                 }
-                if( temp == bDecimal && goodCounter > 1){
+                if( temp == bDecimal && goodCounter > 1){ //si on est arrivé au dernier nombre et qu'il est bon
                     printf(" et %lld",goodValue);
                 }
-                else if(numberOf1 == numberOf0  && temp == bDecimal && goodCounter == 1){
+                else if(numberOf1 == numberOf0  && temp == bDecimal && goodCounter == 1){//si on trouve qu'un seul bon qui est le dernier
                     printf("%lld",goodValue);
                 }
                 else if(temp == bDecimal && goodCounter == 1 && numberOf1 != numberOf0){//si on trouve qu'un seul bon qui n'est pas le dernier
