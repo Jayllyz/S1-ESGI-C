@@ -165,7 +165,10 @@ do
                 else if(numberOf1 != numberOf0  && temp == bDecimal && goodCounter > 1){
                     printf(" et %lld",goodValue);
                 }
-                if(temp == bDecimal && goodCounter == 1 && numberOf1 != numberOf0){//si on trouve qu'un seul bon qui n'est pas le dernier
+                else if(numberOf1 == numberOf0  && temp == bDecimal && goodCounter == 1){
+                    printf("%lld",goodValue);
+                }
+                else if(temp == bDecimal && goodCounter == 1 && numberOf1 != numberOf0){//si on trouve qu'un seul bon qui n'est pas le dernier
                     printf("%lld",goodValue);
                 }
 
