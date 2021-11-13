@@ -157,10 +157,7 @@ do
                     printf(",%lld",goodValue);//on rajoute une , pour les prochains
                     goodValue = actual_value;
                 }
-                if(numberOf1 == numberOf0  && temp == bDecimal && goodCounter > 1){
-                    printf(" et %lld",goodValue);
-                }
-                else if(numberOf1 != numberOf0  && temp == bDecimal && goodCounter > 1){
+                if( temp == bDecimal && goodCounter > 1){
                     printf(" et %lld",goodValue);
                 }
                 else if(numberOf1 == numberOf0  && temp == bDecimal && goodCounter == 1){
