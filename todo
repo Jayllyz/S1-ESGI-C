@@ -1,2 +1,3 @@
-- Ajouter une vérification pour les nombres décimaux ;
 - Amélioration des commentaires, présentation, ...
+- Déclarer les variables au début
+- Affichages du nombre de barres quand inpt < 10
