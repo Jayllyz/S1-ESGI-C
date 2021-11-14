@@ -12,13 +12,22 @@ void win1_on_expose (Ez_event *ev)
     ez_draw_line (ev->win, 50,  h/2,w-50,h/2);
     ez_draw_text (ev->win, EZ_TC, 35, 50, "Y");
     ez_draw_text (ev->win, EZ_TC, w-50, h/2 + 10, "X");
+    for(int i=50; i<=h-50; i+=25)
+    {
+        ez_draw_line (ev->win, 45, i, 55, i);
+    }
+    for(int j=75; j<=w-50; j+=25)
+    {
+        ez_draw_line (ev->win, j, (h/2)-5, j, (h/2)+5);
+    }
+
     
 }
 
 void win1_on_key_press (Ez_event *ev)
 {
     switch (ev->key_sym) {
-        case XK_q : ez_quit (); break;
+       // case XK_q : ez_quit (); break;
     }
 
 }
