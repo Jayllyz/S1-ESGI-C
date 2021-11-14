@@ -10,8 +10,8 @@ void win1_on_expose (Ez_event *ev)
     ez_draw_text (ev->win, EZ_TC, w/2, 1, "q pour quitter");
     ez_draw_line (ev->win,  50,  50,50,h-50);
     ez_draw_line (ev->win, 50,  h/2,w-50,h/2);
-    ez_draw_text (ev->win, EZ_TC, 35, 50, "X");
-    ez_draw_text (ev->win, EZ_TC, w-50, h/2 + 10, "Y");
+    ez_draw_text (ev->win, EZ_TC, 35, 50, "Y");
+    ez_draw_text (ev->win, EZ_TC, w-50, h/2 + 10, "X");
     
 }
 
