@@ -15,8 +15,14 @@ int main(int argc, char **arg)
     unsigned char type_check; // 1 : scanf a bien récupéré un nombre, et non un autre type de valeur.
     unsigned char inpt_check; // Doit être égal à 3 pour que la valeur saisie par l'utilisateur soit conforme.
     unsigned char bars; // Barres nécessaires pour un chiffre
-    unsigned char is_good; // Egal à 1 si le nombre est magique.
     
+    // Variables utilisées si "inpt" est un nombre
+    unsigned char digit1; // Premier chiffre du nombre
+    unsigned char digit2; // Deuxième chiffre du nombre
+    unsigned char test_digit; // Sélection du chiffre à traiter
+    unsigned char bars_sum; // Somme des barres des deux chiffres 
+    unsigned char is_good; // Egal à 1 si le nombre est magique.
+
 
     // Boucle permettant de répéter le programme
     do
@@ -34,7 +40,7 @@ int main(int argc, char **arg)
             // Si l'utilisateur a saisi un caractère
             if (type_check != 1)
             {
-                printf("ERREUR : Vous avez saisi un caract%cre.\nVeuillez saisir soit '1', soit '2' : ", 138);
+                printf("ERREUR : Vous avez saisi un caract%cre.\n\nVeuillez saisir soit '1', soit '2' : ", 138);
                 fflush(stdin);
                 type_check = scanf("%d", &inpt);
             }
@@ -42,9 +48,9 @@ int main(int argc, char **arg)
                 inpt_check++;
 
             // Si la valeur est trop petite
-            if (inpt < 0)
+            if (inpt < 1)
             {
-                printf("ERREUR : Vous avez saisi une valeur trop petite.\nVeuillez saisir soit '1', soit '2' : ");
+                printf("ERREUR : Vous avez saisi une valeur trop petite.\n\nVeuillez saisir soit '1', soit '2' : ");
                 fflush(stdin);
                 type_check = scanf("%d", &inpt);
             }
@@ -54,7 +60,7 @@ int main(int argc, char **arg)
             // Si la valeur est trop grande
             if (inpt > 2)
             {
-                printf("ERREUR : Vous avez saisi une valeur trop grande.\nVeuillez saisir soit '1', soit '2' : ");
+                printf("ERREUR : Vous avez saisi une valeur trop grande.\n\nVeuillez saisir soit '1', soit '2' : ");
                 fflush(stdin);
                 type_check = scanf("%d", &inpt);
             }
@@ -72,6 +78,7 @@ int main(int argc, char **arg)
                 fflush(stdin);
                 type_check = scanf("%d", &inpt);
 
+
                 // Vérification de la saisie de "inpt" pour le chiffre/nombre magique
                 while (inpt_check != 3)
                 {
@@ -80,7 +87,7 @@ int main(int argc, char **arg)
                     // Si l'utilisateur a saisi un caractère
                     if (type_check != 1)
                     {
-                        printf("ERREUR : Vous avez saisi un caract%cre.\nVeuillez saisir un nombre compris entre 0 et 99 (inclus) : ", 138);
+                        printf("ERREUR : Vous avez saisi un caract%cre.\n\nVeuillez saisir un nombre compris entre 0 et 99 (inclus) : ", 138);
                         fflush(stdin); // Purge du buffer nécessaire uniquement lorsque de la saisie de caractères
                         type_check = scanf("%d", &inpt);
                     }
@@ -90,8 +97,8 @@ int main(int argc, char **arg)
                     // Si la valeur est trop petite
                     if (inpt < 0)
                     {
-                        printf("ERREUR : Vous avez saisi une valeur n%cgative.\nVeuillez saisir un nombre compris entre 0 et 99 (inclus) : ", 130);
-                fflush(stdin);
+                        printf("ERREUR : Vous avez saisi une valeur n%cgative.\n\nVeuillez saisir un nombre compris entre 0 et 99 (inclus) : ", 130);
+                        fflush(stdin);
                         type_check = scanf("%d", &inpt);
                     }
                     else
@@ -100,8 +107,8 @@ int main(int argc, char **arg)
                     // Si la valeur est trop grande
                     if (inpt > 99)
                     {
-                        printf("ERREUR : Vous avez saisi une valeur trop grande.\nVeuillez saisir un nombre compris entre 0 et 99 (inclus) : ");
-                fflush(stdin);
+                        printf("ERREUR : Vous avez saisi une valeur trop grande.\n\nVeuillez saisir un nombre compris entre 0 et 99 (inclus) : ");
+                        fflush(stdin);
                         type_check = scanf("%d", &inpt);
                     }
                     else
@@ -110,14 +117,49 @@ int main(int argc, char **arg)
                 inpt_check = 0; // Rénitialisation de la variable pour les futures vérifications
 
 
-                // Si "inpt" est un nombre
-                if (inpt > 9)
+                // Si "inpt" est un chiffre*
+                if (inpt < 10)
                 {
-                    unsigned char digit1 = inpt / 10; // Premier chiffre du nombre
-                    unsigned char digit2 = inpt % 10; // Deuxième chiffre du nombre
-
-                    unsigned char test_digit = digit1; // Sélection du chiffre à traiter
-                    unsigned char bars_sum = 0; // Somme des barres des deux chiffres
+                    switch (inpt)
+                    {
+                        // Les chiffres sont regroupés par le nombre de barres nécessaires
+                        case 0:
+                        case 6:
+                        case 9:
+                            bars = 6;
+                            break;    
+                        
+                        case 1:
+                            bars = 2;
+                            break;
+                        
+                        case 2:
+                        case 3:
+                        case 5:
+                            bars = 5;
+                            break;
+                        
+                        case 4:
+                            bars = 4;
+                            break;
+                        
+                        case 7:
+                            bars = 3;
+                            break;
+                        
+                        case 8:
+                            bars = 7;
+                            break;
+                    }
+                }
+                // Si "inpt" est un nombre
+                else
+                {
+                    // Affectation des chiffres aux variables correspondantes
+                    digit1 = inpt / 10;
+                    digit2 = inpt % 10;
+                    test_digit = digit1;
+                    bars_sum = 0;
 
                     // Boucle pour l'addition des barres des chiffres
                     for (int i = 1; i <= 2; ++i)
@@ -126,39 +168,30 @@ int main(int argc, char **arg)
                         if (i == 2)
                             test_digit = digit2;
 
+                        // Les chiffres sont regroupés par le nombre de barres nécessaires
                         switch (test_digit)
                         {
                             case 0:
+                            case 6:
+                            case 9:
                                 bars = 6;
                                 bars_sum += bars;
                                 break;
+
                             case 1:
                                 bars = 2;
                                 bars_sum += bars;
                                 break;
 
                             case 2:
-                                bars = 5;
-                                bars_sum += bars;
-                                break;
-
                             case 3:
+                            case 5:
                                 bars = 5;
                                 bars_sum += bars;
                                 break;
 
                             case 4:
                                 bars = 4;
-                                bars_sum += bars;
-                                break;
-                            
-                            case 5:
-                                bars = 5;
-                                bars_sum += bars;
-                                break;
-                            
-                            case 6:
-                                bars = 6;
                                 bars_sum += bars;
                                 break;
 
@@ -171,14 +204,9 @@ int main(int argc, char **arg)
                                 bars = 7;
                                 bars_sum += bars;
                                 break;
-
-                            case 9:
-                                bars = 6;
-                                bars_sum += bars;
-                                break;
                         }
                         if (i == 1)
-                            printf("\nPremier chiffre    : %d --> %d barres", digit1, bars);
+                            printf("Premier chiffre    : %d --> %d barres", digit1, bars);
                         
                         else 
                             printf("\nDeuxi%cme chiffre   : %d --> %d barres", 138, digit2, bars);
@@ -193,25 +221,16 @@ int main(int argc, char **arg)
                         is_good = 1;
                 }
 
-                // Cas le plus simple où l'on nous donne 1 seul chiffre
-                switch (inpt)
-                {
-                    case 4:
-                    case 5:
-                    case 6:
-                        is_good = 1;
-                        break;
-                }
 
                 // Test final pour voir si c'est un chiffre/nombre magique
-                if (is_good && inpt < 10)
-                    printf("\nLe chiffre est magique (chiffre = barres n%ccessaires).\n", 130);
+                if (inpt < 10 && inpt == 4 || inpt == 5 || inpt == 6)
+                    printf("Barres n%ccessaires : %d\nLe chiffre est magique (chiffre = barres n%ccessaires).\n", 130, bars, 130);
                 else if (is_good && inpt >= 10)
-                    printf("\nLe nombre est magique (somme des chiffres = somme des barres).\n");
+                    printf("Le nombre est magique (somme des chiffres = somme des barres).\n");
                 else if (inpt < 10)
-                    printf("\nLe chiffre n'est pas magique (chiffre != barres n%ccessaires).\n", 130);
+                    printf("Barres n%ccessaires : %d\nLe chiffre n'est pas magique (chiffre != barres n%ccessaires).\n", 130, bars, 130);
                 else
-                    printf("\nLe nombre n'est pas magique (somme des chiffres != somme des barres).\n");
+                    printf("Le nombre n'est pas magique (somme des chiffres != somme des barres).\n");
                 
                 break;
 
