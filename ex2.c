@@ -214,9 +214,12 @@ int main(int argc, char **arg)
                     printf("\nSomme des barres   : %d", bars_sum);
                     printf("\nSomme des chiffres : %d\n", digit1 + digit2);
 
-                    // Si le nombre de barres des 2 chiffres composant le nombre
-                    // et la somme des 2 chiffres sont égaux,
-                    // on affecte la valeur 1 à "is_good" afin d'indiquer que c'est un nombre magique.
+                    /* 
+                        Si le nombre de barres des 2 chiffres composant le nombre
+                        et la somme des 2 chiffres sont égaux,
+                        on affecte la valeur 1 à "is_good"
+                        afin d'indiquer que c'est un nombre magique. 
+                    */
                     if (bars_sum == digit1 + digit2)
                         is_good = 1;
                 }
