@@ -15,21 +15,21 @@ void win1_on_expose (Ez_event *ev)
     ez_draw_text (ev->win, EZ_TC, 35, 50, "Y");
     ez_draw_text (ev->win, EZ_TC, w-50, h/2 + 10, "X");
     sup = 50;
-    for(int i=50; i<=h-50; i+=10)
+    for(int i=50; i<=h-50; i+=50)
     {
         ez_draw_line (ev->win, 45, i, 55, i);
-        sup-=10;
+        sup-=50;
         ez_draw_line (ev->win, 45, sup, 55, sup);
     }
-    for(int j=50; j<=w-50; j+=10)
+    for(int j=50; j<=w-50; j+=50)
     {
         ez_draw_line (ev->win, j, (h/2)-5, j, (h/2)+5);
     }
     ez_set_color (ez_red);
     ez_set_thick (1);
-    for(double i = 0.0; i < 2*M_PI; i+=0.1) {
-        a = (cos(i) - cos(3*i))*10;
-        b = (sin(i) + sin(3*i))*10;
+    for(double i = 0.00; i < 2*M_PI; i+=0.001) {
+        a = (cos(i) - cos(3*i))*50;
+        b = (sin(i) + sin(3*i))*50;
         ez_draw_point (ev->win, a +50, b +(h/2));
     }
 
