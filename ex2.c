@@ -17,6 +17,7 @@ int main(int argc, char **arg)
     unsigned char bars; // Barres nécessaires pour un chiffre
     
     // Variables utilisées si "inpt" est un nombre
+    unsigned char i; // Compteur pour boucle
     unsigned char digit1; // Premier chiffre du nombre
     unsigned char digit2; // Deuxième chiffre du nombre
     unsigned char test_digit; // Sélection du chiffre à traiter
@@ -162,7 +163,7 @@ int main(int argc, char **arg)
                     bars_sum = 0;
 
                     // Boucle pour l'addition des barres des chiffres
-                    for (int i = 1; i <= 2; ++i)
+                    for (i = 1; i <= 2; ++i)
                     {
                         // Changement du chiffre à traiter
                         if (i == 2)
