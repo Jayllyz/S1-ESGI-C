@@ -10,16 +10,16 @@ void win1_on_expose (Ez_event *ev)
     ez_window_get_size (ev->win, &w, &h);
     ez_set_color (ez_black);
     ez_draw_text (ev->win, EZ_TC, w/2, 1, "q pour quitter");
-    ez_draw_line (ev->win,  50,  50,50,h-50);
+    ez_draw_line (ev->win,  h/2,  50,h/2,h-50);
     ez_draw_line (ev->win, 50,  h/2,w-50,h/2);
-    ez_draw_text (ev->win, EZ_TC, 35, 50, "Y");
+    ez_draw_text (ev->win, EZ_TC, (h/2)-20, 50, "Y");
     ez_draw_text (ev->win, EZ_TC, w-50, h/2 + 10, "X");
-    sup = 50;
-    for(int i=50; i<=h-50; i+=50)
+    sup = h/2;
+    for(int i=h/2; i<=h-50; i+=50)
     {
-        ez_draw_line (ev->win, 45, i, 55, i);
+        ez_draw_line (ev->win, (h/2)-5, i, (h/2)+5, i);
         sup-=50;
-        ez_draw_line (ev->win, 45, sup, 55, sup);
+        ez_draw_line (ev->win, (h/2)+5, sup, (h/2)-5, sup);
     }
     for(int j=50; j<=w-50; j+=50)
     {
@@ -27,10 +27,10 @@ void win1_on_expose (Ez_event *ev)
     }
     ez_set_color (ez_red);
     ez_set_thick (1);
-    for(double i = 0.00; i < 2*M_PI; i+=0.001) {
+    for(double i = 0.00; i < 2*M_PI; i+=0.0000001) {
         a = (cos(i) - cos(3*i))*50;
         b = (sin(i) + sin(3*i))*50;
-        ez_draw_point (ev->win, a +50, b +(h/2));
+        ez_draw_point (ev->win, a +h/2, b +(h/2));
     }
 
 }
@@ -38,7 +38,7 @@ void win1_on_expose (Ez_event *ev)
 void win1_on_key_press (Ez_event *ev)
 {
     switch (ev->key_sym) {
-        //case XK_q : ez_quit (); break;
+        case XK_q : ez_quit (); break;
 
     }
 
