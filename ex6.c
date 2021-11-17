@@ -22,15 +22,15 @@ void win1_on_expose (Ez_event *ev)
         ez_draw_line (ev->win, 45, sup, 55, sup);
     }
     for(int j=50; j<=w-50; j+=10)
-    {   
+    {
         ez_draw_line (ev->win, j, (h/2)-5, j, (h/2)+5);
     }
     ez_set_color (ez_red);
     ez_set_thick (1);
     for(double i = 0.0; i < 2*M_PI; i+=0.1) {
-        a = cos(i) - cos(3*i);
-        b = sin(i) + sin(3*i);
-        ez_draw_point (ev->win, (a +50)*10, (b +(h/2))*10); 
+        a = (cos(i) - cos(3*i))*10;
+        b = (sin(i) + sin(3*i))*10;
+        ez_draw_point (ev->win, a +50, b +(h/2));
     }
 
 }
@@ -38,7 +38,7 @@ void win1_on_expose (Ez_event *ev)
 void win1_on_key_press (Ez_event *ev)
 {
     switch (ev->key_sym) {
-       //case XK_q : ez_quit (); break;
+        //case XK_q : ez_quit (); break;
 
     }
 
@@ -55,8 +55,8 @@ void win1_on_event (Ez_event *ev)//main function
 int main()
 {
     if (ez_init() < 0) exit(1);
-        ez_window_create (800, 800, "Exercice 6", win1_on_event);
-    
+    ez_window_create (800, 800, "Exercice 6", win1_on_event);
+
     ez_main_loop ();
     exit(0);
 }
