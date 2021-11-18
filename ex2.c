@@ -227,7 +227,7 @@ int main(int argc, char **arg)
 
 
                 // Test final pour voir si c'est un chiffre/nombre magique
-                if (inpt < 10 && inpt == 4 || inpt == 5 || inpt == 6)
+                if ((inpt < 10 && inpt == 4) || inpt == 5 || inpt == 6)
                     printf("Barres n%ccessaires : %d\nLe chiffre est magique (chiffre = barres n%ccessaires).\n", 130, bars, 130);
                 else if (is_good && inpt >= 10)
                     printf("Le nombre est magique (somme des chiffres = somme des barres).\n");
