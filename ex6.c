@@ -44,12 +44,12 @@ void win1_on_key_press (Ez_event *ev,int zoom)
     switch (ev->key_sym) {
         case XK_q : ez_quit (); break;
         case XK_a : 
-            zoom+=10;
+            zoom+=100;
             ez_window_clear(ev->win);
             win1_on_expose(ev,zoom);
             break;
         case XK_b : 
-            zoom-=10;
+            zoom=50;
             ez_window_clear(ev->win);
             win1_on_expose(ev,zoom);
             break;
