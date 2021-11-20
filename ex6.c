@@ -1,4 +1,5 @@
-// gcc -Wall ex6.c ez-draw.c -o EXEC -lX11 -lXext -lm
+// gcc -Wall ex6.c ez-draw.c -o EXEC -lX11 -lXext -lm (linux)
+// gcc -Wall ex6.c ez-draw.c -o EXEC -lgdi32 (windows)
 //./EXEC
 #include "ez-draw.h"
 #include <math.h>
@@ -55,29 +56,13 @@ void win1_on_key_press (Ez_event *ev,int zoom)
             break;
     }
 }
-void win1_on_key_release (Ez_event *ev, int zoom)/* Key released */
-{
-     switch (ev->key_sym) {
-        //case XK_q : ez_quit (); break;
-        case XK_a : 
-            zoom+=100;
-            ez_window_clear(ev->win);
-            win1_on_expose(ev,zoom);
-            break;
-        case XK_b : 
-            zoom=50;
-            ez_window_clear(ev->win);
-            win1_on_expose(ev,zoom);
-            break;
-    }
-}
+
 void win1_on_event (Ez_event *ev)//main function
 {
     int zoom = 50;
     switch (ev->type) {
         case Expose   : win1_on_expose    (ev,zoom); break;
         case KeyPress : win1_on_key_press (ev,zoom); break;
-        case KeyRelease : win1_on_key_release (ev,zoom); break;
     }
 }
 
