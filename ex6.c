@@ -29,9 +29,9 @@ void win1_on_expose (Ez_event *ev, int zoom)
     ez_set_color (ez_red);
     ez_set_thick (1);
     for(double i = 0.00; i < 2*M_PI; i+=0.0001) {
-        a = (cos(i) - cos(3*i))*50;
-        b = (sin(i) + sin(3*i))*50;
-        ez_draw_point (ev->win, a +h/2, b +(h/2));
+        a = (cos(i) - cos(3*i))*zoom;
+        b = (sin(i) + sin(3*i))*zoom;
+        ez_draw_point (ev->win, a + middle, b + middle);
     }
   
 }
