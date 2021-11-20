@@ -11,6 +11,8 @@ void win1_on_expose (Ez_event *ev, int zoom)
     int middle=h/2;
     ez_set_color (ez_black);
     ez_draw_text (ev->win, EZ_TC, w/2, 1, "q pour quitter");
+    ez_draw_text (ev->win, EZ_TC, 100, 1, "a = zoom");
+    ez_draw_text (ev->win, EZ_TC, w-100, 1, "b = reset zoom");
     ez_draw_line (ev->win,  middle,  50,h/2,h-50);
     ez_draw_line (ev->win, 50,  middle,w-50,middle);
     ez_draw_text (ev->win, EZ_TC, middle-20, 50, "Y");
@@ -33,30 +35,49 @@ void win1_on_expose (Ez_event *ev, int zoom)
         b = (sin(i) + sin(3*i))*zoom;
         ez_draw_point (ev->win, a + middle, b + middle);
     }
-  
+
 }
 
 
 void win1_on_key_press (Ez_event *ev,int zoom)
 {
     switch (ev->key_sym) {
-        //case XK_q : ez_quit (); break;
+        case XK_q : ez_quit (); break;
         case XK_a : 
             zoom+=10;
             ez_window_clear(ev->win);
             win1_on_expose(ev,zoom);
             break;
-    
+        case XK_b : 
+            zoom-=10;
+            ez_window_clear(ev->win);
+            win1_on_expose(ev,zoom);
+            break;
     }
-
 }
-
+void win1_on_key_release (Ez_event *ev, int zoom)/* Key released */
+{
+     switch (ev->key_sym) {
+        //case XK_q : ez_quit (); break;
+        case XK_a : 
+            zoom+=100;
+            ez_window_clear(ev->win);
+            win1_on_expose(ev,zoom);
+            break;
+        case XK_b : 
+            zoom=50;
+            ez_window_clear(ev->win);
+            win1_on_expose(ev,zoom);
+            break;
+    }
+}
 void win1_on_event (Ez_event *ev)//main function
 {
     int zoom = 50;
     switch (ev->type) {
         case Expose   : win1_on_expose    (ev,zoom); break;
         case KeyPress : win1_on_key_press (ev,zoom); break;
+        case KeyRelease : win1_on_key_release (ev,zoom); break;
     }
 }
 
@@ -64,7 +85,6 @@ int main()
 {
     if (ez_init() < 0) exit(1);
     ez_window_create (800, 800, "Exercice 6", win1_on_event);
-
     ez_main_loop ();
     exit(0);
 }
