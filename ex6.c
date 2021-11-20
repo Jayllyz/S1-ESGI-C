@@ -3,27 +3,28 @@
 #include "ez-draw.h"
 #include <math.h>
 //M_PI
-void win1_on_expose (Ez_event *ev)
+void win1_on_expose (Ez_event *ev, int zoom)
 {
     int  w, h,sup;
     double a,b;
     ez_window_get_size (ev->win, &w, &h);
+    int middle=h/2;
     ez_set_color (ez_black);
     ez_draw_text (ev->win, EZ_TC, w/2, 1, "q pour quitter");
-    ez_draw_line (ev->win,  h/2,  50,h/2,h-50);
-    ez_draw_line (ev->win, 50,  h/2,w-50,h/2);
-    ez_draw_text (ev->win, EZ_TC, (h/2)-20, 50, "Y");
-    ez_draw_text (ev->win, EZ_TC, w-50, h/2 + 10, "X");
-    sup = h/2;
-    for(int i=h/2; i<=h-50; i+=50)
+    ez_draw_line (ev->win,  middle,  50,h/2,h-50);
+    ez_draw_line (ev->win, 50,  middle,w-50,middle);
+    ez_draw_text (ev->win, EZ_TC, middle-20, 50, "Y");
+    ez_draw_text (ev->win, EZ_TC, w-50, middle + 10, "X");
+    sup = middle;
+    for(int i=middle; i<=h-50; i+=zoom)
     {
-        ez_draw_line (ev->win, (h/2)-5, i, (h/2)+5, i);
-        sup-=50;
-        ez_draw_line (ev->win, (h/2)+5, sup, (h/2)-5, sup);
+        ez_draw_line (ev->win, middle-5, i, middle+5, i);
+        sup-=zoom;
+        ez_draw_line (ev->win, middle+5, sup, middle-5, sup);
     }
-    for(int j=50; j<=w-50; j+=50)
+    for(int j=50; j<=w-50; j+=zoom)
     {
-        ez_draw_line (ev->win, j, (h/2)-5, j, (h/2)+5);
+        ez_draw_line (ev->win, j, middle-5, j, middle+5);
     }
     ez_set_color (ez_red);
     ez_set_thick (1);
@@ -32,23 +33,30 @@ void win1_on_expose (Ez_event *ev)
         b = (sin(i) + sin(3*i))*50;
         ez_draw_point (ev->win, a +h/2, b +(h/2));
     }
-
+  
 }
 
-void win1_on_key_press (Ez_event *ev)
+
+void win1_on_key_press (Ez_event *ev,int zoom)
 {
     switch (ev->key_sym) {
-        case XK_q : ez_quit (); break;
-
+        //case XK_q : ez_quit (); break;
+        case XK_a : 
+            zoom+=10;
+            ez_window_clear(ev->win);
+            win1_on_expose(ev,zoom);
+            break;
+    
     }
 
 }
 
 void win1_on_event (Ez_event *ev)//main function
 {
+    int zoom = 50;
     switch (ev->type) {
-        case Expose   : win1_on_expose    (ev); break;
-        case KeyPress : win1_on_key_press (ev); break;
+        case Expose   : win1_on_expose    (ev,zoom); break;
+        case KeyPress : win1_on_key_press (ev,zoom); break;
     }
 }
 
