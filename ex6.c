@@ -19,41 +19,44 @@
 
 void win1_on_expose (Ez_event *ev, int zoom)
 {
-    int width, height, sup; // Dimension de la fenêtre
+    int width, height; // Dimension de la fenêtre
     double a, b;
 
     ez_window_get_size(ev->win, &width, &height);
-    int middle = height / 2;
+    int middleH = height / 2;
+    int middleW = width / 2;
 
     ez_set_color(ez_black); // Coloration du texte et des axes
 
     // Explications des touches
-    ez_draw_text(ev->win, EZ_TC, width / 2, 1, "q pour quitter");
+    ez_draw_text(ev->win, EZ_TC, middleW, 1, "q pour quitter");
     ez_draw_text(ev->win, EZ_TC, 100, 1, "a = zoom");
     ez_draw_text(ev->win, EZ_TC, width-100, 1, "b = reset zoom");
 
     // Axe des ordonnées
-    ez_draw_text(ev->win, EZ_TC, middle-20, 50, "Y");
-    ez_draw_line(ev->win,  middle,  50, height / 2, height-50);
+    ez_draw_text(ev->win, EZ_TC, middleH-20, 50, "Y");
+    ez_draw_line(ev->win,  middleH,  50, middleH, height-50);
 
     // Axe des abscisses
-    ez_draw_text(ev->win, EZ_TC, width-50, middle+10, "X");
-    ez_draw_line(ev->win, 50,  middle, width-50,middle);
+    ez_draw_text(ev->win, EZ_TC, width-50, middleH+10, "X");
+    ez_draw_line(ev->win, 50,  middleH, width-50,middleH);
 
-    sup = middle;
-
+     int secondI= middleH;
+     int secondJ = middleW;
     // Graduation de l'axe des ordonnées
-    for (int i = middle; i <= height-50; i += zoom)
+    for (int i = middleH; i <= height-50; i += zoom)
     {
-        ez_draw_line (ev->win, middle-5, i, middle+5, i);
-        sup -= zoom;
-        ez_draw_line (ev->win, middle+5, sup, middle-5, sup);
+        ez_draw_line (ev->win, middleH-5, i, middleH+5, i);
+        secondI -= zoom;
+        ez_draw_line (ev->win, middleH+5, secondI, middleH-5, secondI);
     }
 
     // Graduation de l'axe des abscisses
-    for (int j=50; j <= width-50; j += zoom)
-        ez_draw_line(ev->win, j, middle-5, j, middle+5);
-
+    for (int j=middleW; j <= width-50; j += zoom){
+        ez_draw_line(ev->win, j, middleH-5, j, middleH+5);
+        secondJ -= zoom;
+        ez_draw_line(ev->win, secondJ, middleH-5, secondJ, middleH+5);
+    }  
     
     ez_set_color(ez_red); // Coloration de la courbe
     ez_set_thick(1); // Épaisseur de la courbe
@@ -62,7 +65,7 @@ void win1_on_expose (Ez_event *ev, int zoom)
     for(double i = 0.00; i < 2 * M_PI; i += 0.0001) {
         a = (cos(i) - cos(3*i)) * zoom;
         b = (sin(i) + sin(3*i)) * zoom;
-        ez_draw_point(ev->win, a+middle, b+middle);
+        ez_draw_point(ev->win, a+middleH, b+middleH);
     }
 
 }
