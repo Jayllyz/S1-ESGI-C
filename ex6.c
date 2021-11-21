@@ -41,8 +41,8 @@ void win1_on_expose (Ez_event *ev, int zoom)
     ez_draw_text(ev->win, EZ_TC, width-50, middleH+10, "X");
     ez_draw_line(ev->win, 50,  middleH, width-50,middleH);
 
-     int secondI= middleH+50;
-     int secondJ = middleW+50;
+     int secondI= middleH+zoom;
+     int secondJ = middleW+zoom;
     // Graduation de l'axe des ordonnées
     for (int i = middleH; i <= height-50; i += zoom)
     {
