@@ -19,7 +19,6 @@
 
 Ez_window win1; // Fenêtre menu
 Ez_window win2; // Fenêtre courbe
-int screen = 1; // Fenêtre en cours d'utilisation
 
 
 /* <--------------------- F E N Ê T R E   C O U R B E ---------------------> */
