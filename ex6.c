@@ -39,10 +39,11 @@ void win2_on_expose(Ez_event *ev, int zoom)
     ez_draw_text(ev->win, EZ_TC, 100, 1, "[Z] : Zoom avant");
     ez_draw_text(ev->win, EZ_TC, width-100, 1, "[S] : Zoom arriere");
 
-    //détails equations
+    // Détails equations
     ez_draw_text(ev->win, EZ_TC, 100, height-20, "x = cos(t) - cos(3t)");
     ez_draw_text(ev->win, EZ_TC, width-100, height-20, "y = sin(t) - sin(3t)");
     ez_draw_text(ev->win, EZ_TC, middleW, height-20, "t = [0, 2pi]");
+
     // Axe des ordonnées
     ez_draw_text(ev->win, EZ_TC, middleH-30, 50, "Y");
     ez_draw_line(ev->win,  middleH,  50, middleH, height-50);
@@ -53,7 +54,8 @@ void win2_on_expose(Ez_event *ev, int zoom)
 
     int secondI= middleH+zoom;
     int secondJ = middleW+zoom;
-    int numberGrad=0;
+    int numberGrad = 0;
+
     // Graduation de l'axe des ordonnées
     for (int i = middleH; i <= height-50; i += zoom)
     {
@@ -64,8 +66,9 @@ void win2_on_expose(Ez_event *ev, int zoom)
         numberGrad++;
     }
     numberGrad = 0;
+
     // Graduation de l'axe des abscisses
-    for (int j=middleW; j <= width-50; j += zoom){
+    for (int j = middleW; j <= width-50; j += zoom){
         ez_draw_line(ev->win, j, middleH-5, j, middleH+5);
        if(numberGrad>0)
             ez_draw_text(ev->win, EZ_TC, j+10, middleH+5, "%d",numberGrad);
@@ -78,12 +81,12 @@ void win2_on_expose(Ez_event *ev, int zoom)
     ez_set_thick(1); // Épaisseur de la courbe
 
     // Génération de la courbe
-    for (double i = 0.00; i < 2 * M_PI; i += 0.0001) {
+    for (double i = 0.00; i < 2 * M_PI; i += 0.0001)
+    {
         x = (cos(i) - cos(3*i)) * zoom;
         y = (sin(i) + sin(3*i)) * zoom;
         ez_draw_point(ev->win, x+middleH, y+middleH);
     }
-
 }
 
 
@@ -122,7 +125,7 @@ void win2_on_event(Ez_event *ev)
     int zoom = 50;
     switch (ev->type)
     {
-        case Expose:   win2_on_expose   (ev, zoom); break;
+        case Expose  : win2_on_expose   (ev, zoom); break;
         case KeyPress: win2_on_key_press(ev, zoom); break;
     }
 }
