@@ -40,29 +40,34 @@ void win2_on_expose(Ez_event *ev, int zoom)
     ez_draw_text(ev->win, EZ_TC, width-100, 1, "[S] : Zoom arriere");
 
     // Axe des ordonnées
-    ez_draw_text(ev->win, EZ_TC, middleH-20, 50, "Y");
+    ez_draw_text(ev->win, EZ_TC, middleH-30, 50, "Y");
     ez_draw_line(ev->win,  middleH,  50, middleH, height-50);
 
     // Axe des abscisses
-    ez_draw_text(ev->win, EZ_TC, width-50, middleH+10, "X");
+    ez_draw_text(ev->win, EZ_TC, width-50, middleH+30, "X");
     ez_draw_line(ev->win, 50,  middleH, width-50,middleH);
 
     int secondI= middleH+zoom;
     int secondJ = middleW+zoom;
-
+    int numberGrad=0;
     // Graduation de l'axe des ordonnées
     for (int i = middleH; i <= height-50; i += zoom)
     {
         ez_draw_line (ev->win, middleH-5, i, middleH+5, i);
         secondI -= zoom;
         ez_draw_line (ev->win, middleH+5, secondI, middleH-5, secondI);
+        ez_draw_text(ev->win, EZ_TC, middleH-10, secondI-15, "%d",numberGrad);
+        numberGrad++;
     }
-
+    numberGrad = 0;
     // Graduation de l'axe des abscisses
     for (int j=middleW; j <= width-50; j += zoom){
         ez_draw_line(ev->win, j, middleH-5, j, middleH+5);
+       if(numberGrad>0)
+            ez_draw_text(ev->win, EZ_TC, j+10, middleH+5, "%d",numberGrad);
         secondJ -= zoom;
         ez_draw_line(ev->win, secondJ, middleH-5, secondJ, middleH+5);
+        numberGrad++;
     }  
     
     ez_set_color(ez_red); // Coloration de la courbe
