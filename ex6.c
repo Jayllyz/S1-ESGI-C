@@ -39,6 +39,10 @@ void win2_on_expose(Ez_event *ev, int zoom)
     ez_draw_text(ev->win, EZ_TC, 100, 1, "[Z] : Zoom avant");
     ez_draw_text(ev->win, EZ_TC, width-100, 1, "[S] : Zoom arriere");
 
+    //détails equations
+    ez_draw_text(ev->win, EZ_TC, 100, height-20, "x = cos(t) - cos(3t)");
+    ez_draw_text(ev->win, EZ_TC, width-100, height-20, "y = sin(t) - sin(3t)");
+    ez_draw_text(ev->win, EZ_TC, middleW, height-20, "t = [0, 2pi]");
     // Axe des ordonnées
     ez_draw_text(ev->win, EZ_TC, middleH-30, 50, "Y");
     ez_draw_line(ev->win,  middleH,  50, middleH, height-50);
@@ -97,7 +101,7 @@ void win2_on_key_press(Ez_event *ev, int zoom)
         // Lorsque l'utilisateur appuie sur 'Z' --> Zoom avant
         case XK_z:
         case XK_Z:
-            zoom += 100;
+            zoom = 150;
             ez_window_clear(ev->win);
             win2_on_expose(ev, zoom);
             break;
@@ -177,7 +181,6 @@ int main()
     if (ez_init() < 0) exit(1);
     
     win1 = ez_window_create(800, 800, "Exercice 6", win1_on_event);
-    
     ez_main_loop ();
     exit(0);
 }
