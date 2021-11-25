@@ -89,6 +89,28 @@ void win2_on_expose(Ez_event *ev, int zoom)
     }
 }
 
+void win2_on_button_press(Ez_event *ev,int zoom){
+    int width,height;
+    double x,y;
+    ez_window_get_size(ev->win, &width, &height);
+    if(ev->mx <= height /2){
+    height = (height+100)/2;
+    }else{
+        height /=2;
+    }
+    x = ev->mx-height;
+    y = ev->my-height;
+    if(ev->my !=0)
+        y *=-1;
+    if(zoom==150){
+        x/=50;
+        y/=50;
+        ez_draw_text(ev->win, EZ_TL, 50, 50, "x = %.2lf, y = %.2lf", x/3, y/3);
+    }
+    else{
+        ez_draw_text(ev->win, EZ_TL, 50, 50, "x = %.2lf, y = %.2lf", x/50, y/50);         
+    }
+}
 
 void win2_on_key_press(Ez_event *ev, int zoom)
 {
@@ -126,6 +148,7 @@ void win2_on_event(Ez_event *ev)
     switch (ev->type)
     {
         case Expose  : win2_on_expose   (ev, zoom); break;
+        case ButtonPress  : win2_on_button_press (ev, zoom); break;
         case KeyPress: win2_on_key_press(ev, zoom); break;
     }
 }
