@@ -13,22 +13,22 @@
 int main(int argc, char **argv)
 {
     // Variables relatives au bon fonctionnement du programme
+    unsigned char running = 1; // 1: le programme est répété, 0: le programme s'arrête
     int usr_inpt; // Saisie de l'utilisateur
     unsigned char type_check; // Nombre de valeurs correctement scannées
     unsigned char check_step; // Nombre d'étapes de vérification validées
-    unsigned char running = 1; // 1: le programme est répété, 0: le programme s'arrête.
 
     // Variables relatives à l'algorithme
-    int n = 0; // Nombre de lignes constituant le pattern.
-    int i, j, k = 0; // Variable pour les boucles.
+    int n; // Nombre de lignes constituant le pattern
+    int i, j, k; // Variable pour les boucles
     
-    srand(time(NULL)); // Initialisation de la fonction rand().
+    srand(time(NULL)); // Initialisation de la fonction rand()
 
     // Boucle principale permettant de répéter le programme
     do
     {
         printf("\nExercice 1 :\n1. Lancer\n2. Quitter\nSaisissez votre choix : ");
-        fflush(stdin); // Purge du buffer d'entrées pour éviter tout conflit
+        fflush(stdin); // Purge du buffer d'entrées pour éviter tout conflit. Valable pour tous
         type_check = scanf("%d", &usr_inpt);
         
         // Vérification de la saisie
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
             // 1. Lancer
             case 1:
                 printf("Saisissez un nombre de lignes entre 0 et 100 (0 pour g%cn%crer un nombre al%catoire entre 1 et 20) : ", 130, 130, 130);
-                fflush(stdin); // Purge du buffer d'entrées pour éviter tout conflit
+                fflush(stdin);
                 type_check = scanf("%d", &usr_inpt);
                 
                 // Vérification de la saisie
