@@ -122,6 +122,8 @@ int main(int argc, char **argv)
                     n = rand() % 20 + 1;
                     printf("Nombre de lignes al%catoirement g%cn%cr%c : %d\n", 130, 130, 130, 130, n);
                 }
+                
+                printf("\n"); // Saut de ligne pour aérer l'output
 
                 // Cas particulier où l'utilisateur veut qu'une seule ligne
                 if (n == 1)
