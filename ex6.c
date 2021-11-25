@@ -19,11 +19,13 @@
 
 Ez_window win1; // Fenêtre menu
 Ez_window win2; // Fenêtre courbe
-
+//variables globales
+int zoom; 
+int bool = 0;
 
 /* <--------------------- F E N Ê T R E   C O U R B E ---------------------> */
 
-void win2_on_expose(Ez_event *ev, int zoom)
+void win2_on_expose(Ez_event *ev)
 {
     // Dimension de la fenêtre
     int width, height;
@@ -89,9 +91,10 @@ void win2_on_expose(Ez_event *ev, int zoom)
     }
 }
 
-void win2_on_button_press(Ez_event *ev,int zoom){
+void win2_on_button_press(Ez_event *ev){
     int width,height;
     double x,y;
+    printf("%d",zoom);
     ez_window_get_size(ev->win, &width, &height);
     if(ev->mx <= height /2){
     height = (height+100)/2;
@@ -102,7 +105,7 @@ void win2_on_button_press(Ez_event *ev,int zoom){
     y = ev->my-height;
     if(ev->my !=0)
         y *=-1;
-    if(zoom==150){
+    if(bool==1){
         x/=50;
         y/=50;
         ez_draw_text(ev->win, EZ_TL, 50, 50, "x = %.2lf, y = %.2lf", x/3, y/3);
@@ -112,7 +115,7 @@ void win2_on_button_press(Ez_event *ev,int zoom){
     }
 }
 
-void win2_on_key_press(Ez_event *ev, int zoom)
+void win2_on_key_press(Ez_event *ev)
 {
     switch (ev->key_sym)
     {
@@ -127,16 +130,18 @@ void win2_on_key_press(Ez_event *ev, int zoom)
         case XK_z:
         case XK_Z:
             zoom = 150;
+            bool =1;
             ez_window_clear(ev->win);
-            win2_on_expose(ev, zoom);
+            win2_on_expose(ev);
             break;
 
         // Lorsque l'utilisateur appuie sur 's' --> Zoom arrière
         case XK_s:
         case XK_S:                  
             zoom = 50;
+            bool =0;
             ez_window_clear(ev->win);
-            win2_on_expose(ev, zoom);
+            win2_on_expose(ev);
             break;
     }
 }
@@ -144,12 +149,12 @@ void win2_on_key_press(Ez_event *ev, int zoom)
 
 void win2_on_event(Ez_event *ev)
 {
-    int zoom = 50;
+    zoom = 50;
     switch (ev->type)
     {
-        case Expose  : win2_on_expose   (ev, zoom); break;
-        case ButtonPress  : win2_on_button_press (ev, zoom); break;
-        case KeyPress: win2_on_key_press(ev, zoom); break;
+        case Expose  : win2_on_expose   (ev); break;
+        case ButtonPress  : win2_on_button_press (ev); break;
+        case KeyPress: win2_on_key_press(ev); break;
     }
 }
 
