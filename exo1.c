@@ -18,9 +18,9 @@ int main(int argc, char **argv)
     unsigned char type_check; // Nombre de valeurs correctement scannées
     unsigned char check_step; // Nombre d'étapes de vérification validées
 
-    // Variables relatives à l'algorithme
-    int n; // Nombre de lignes constituant le pattern
-    int i, j, k; // Variable pour les boucles
+    // Variables relatives à l'exercice
+    unsigned char n; // Nombre de lignes constituant le pattern
+    unsigned char i, j, k; // Variable pour les boucles
     
     srand(time(NULL)); // Initialisation de la fonction rand()
 
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
                     // Si la valeur est trop grande
                     if (usr_inpt > 100)
                     {
-                        printf("ERREUR : Vous avez saisi une valeur trop grande.\nVeuillez r%cessayer : ", 130);
+                        printf("ERREUR : Vous avez saisi une valeur sup%crieure %c 100.\nVeuillez r%cessayer : ", 130, 133, 130);
                         fflush(stdin);
                         type_check = scanf("%d", &usr_inpt);
                     }
