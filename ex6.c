@@ -98,7 +98,9 @@ void win2_on_button_press(Ez_event *ev){
     double x,y;//variable pour les calculs
 
     ez_window_get_size(ev->win, &width, &height);//on récupére la taille de la fenêtre
-
+    ez_set_color(ez_white);
+    ez_fill_rectangle (win2, 30, 50, 150, 80);
+    ez_set_color(ez_red);
     if(ev->mx <= height /2){//on vérifie dans quelle zone de l'ecran est la souris
         height = (height+100)/2;
     }else{//si le x est > à la moitié, on a pas besoin de retirer la zone hors du graphique
