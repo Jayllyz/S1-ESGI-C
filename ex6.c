@@ -39,6 +39,7 @@ void win2_on_expose(Ez_event *ev)
     // Explications des touches
     ez_draw_text(ev->win, EZ_TC, middleW, 1, "[R] : Retour au menu principal");
     ez_draw_text(ev->win, EZ_TC, 100, 1, "[Z] : Zoom avant");
+    ez_draw_text(ev->win, EZ_TC, 100, 30, "Clique gauche/droit -> coordonees");
     ez_draw_text(ev->win, EZ_TC, width-100, 1, "[S] : Zoom arriere");
 
     // Détails equations
@@ -92,26 +93,30 @@ void win2_on_expose(Ez_event *ev)
 }
 
 void win2_on_button_press(Ez_event *ev){
-    int width,height;
-    double x,y;
-    printf("%d",zoom);
-    ez_window_get_size(ev->win, &width, &height);
-    if(ev->mx <= height /2){
-    height = (height+100)/2;
-    }else{
+
+    int width,height;//taille de la fenêtre
+    double x,y;//variable pour les calculs
+
+    ez_window_get_size(ev->win, &width, &height);//on récupére la taille de la fenêtre
+
+    if(ev->mx <= height /2){//on vérifie dans quelle zone de l'ecran est la souris
+        height = (height+100)/2;
+    }else{//si le x est > à la moitié, on a pas besoin de retirer la zone hors du graphique
         height /=2;
     }
-    x = ev->mx-height;
+    x = ev->mx-height; //on retire la hauteur pour corriger le décalage
     y = ev->my-height;
-    if(ev->my !=0)
-        y *=-1;
-    if(bool==1){
-        x/=50;
+
+    if(ev->my !=0) //on transforme en positif (et inversement) car le graphique est "inversé" par rapport à l'origine 
+        y *=-1;  //0 est un cas particulier, pas besoin de convertir
+
+    if(bool==1){//si le zoom == 150
+        x/=50;//on divise par 50 car 1 unité = 50 pixels
         y/=50;
-        ez_draw_text(ev->win, EZ_TL, 50, 50, "x = %.2lf, y = %.2lf", x/3, y/3);
+        ez_draw_text(ev->win, EZ_TL, 30, 50, "x =%.2lf, y =%.2lf", x/3, y/3);//On divise par 3 car 1 unité est 3 fois plus grande avec le zoom 150
     }
-    else{
-        ez_draw_text(ev->win, EZ_TL, 50, 50, "x = %.2lf, y = %.2lf", x/50, y/50);         
+    else{//zoom == 50
+        ez_draw_text(ev->win, EZ_TL, 30, 50, "x =%.2lf, y =%.2lf", x/50, y/50);//on divise par 50 car 1 unité = 50 pixels
     }
 }
 
@@ -129,6 +134,7 @@ void win2_on_key_press(Ez_event *ev)
         // Lorsque l'utilisateur appuie sur 'Z' --> Zoom avant
         case XK_z:
         case XK_Z:
+            if(bool==1){break;}//pas besoin de refresh la page si on a déjà un zoom de 150
             zoom = 150;
             bool =1;
             ez_window_clear(ev->win);
@@ -137,7 +143,8 @@ void win2_on_key_press(Ez_event *ev)
 
         // Lorsque l'utilisateur appuie sur 's' --> Zoom arrière
         case XK_s:
-        case XK_S:                  
+        case XK_S:
+            if(bool==0){break;}//pas besoin de refresh la page si on a déjà un zoom de 50
             zoom = 50;
             bool =0;
             ez_window_clear(ev->win);
@@ -153,7 +160,7 @@ void win2_on_event(Ez_event *ev)
     switch (ev->type)
     {
         case Expose  : win2_on_expose   (ev); break;
-        case ButtonPress  : win2_on_button_press (ev); break;
+        case ButtonPress  : win2_on_button_press (ev);  break;
         case KeyPress: win2_on_key_press(ev); break;
     }
 }
