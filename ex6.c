@@ -214,7 +214,7 @@ void win1_on_event(Ez_event *ev)
 
 
 // Génération de la fenêtre
-int main()
+int main(int argc,char **argv)
 {
     if (ez_init() < 0) exit(1);
     
