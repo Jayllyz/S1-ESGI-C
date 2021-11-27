@@ -101,24 +101,20 @@ void win2_on_button_press(Ez_event *ev){
     ez_set_color(ez_white);
     ez_fill_rectangle (win2, 30, 50, 150, 80);
     ez_set_color(ez_red);
-    if(ev->mx <= height /2){//on vérifie dans quelle zone de l'ecran est la souris
-        height = (height+100)/2;
-    }else{//si le x est > à la moitié, on a pas besoin de retirer la zone hors du graphique
-        height /=2;
-    }
-    x = ev->mx-height; //on retire la hauteur pour corriger le décalage
+    height /=2;
+    x = ev->mx-height; //on retire la hauteur/2 pour corriger le décalage
     y = ev->my-height;
-
+    
     if(ev->my !=0) //on transforme en positif (et inversement) car le graphique est "inversé" par rapport à l'origine 
         y *=-1;  //0 est un cas particulier, pas besoin de convertir
 
+    x/=50;//on divise par 50 car 1 unité = 50 pixels
+    y/=50;
     if(bool==1){//si le zoom == 150
-        x/=50;//on divise par 50 car 1 unité = 50 pixels
-        y/=50;
         ez_draw_text(ev->win, EZ_TL, 30, 50, "x =%.2lf, y =%.2lf", x/3, y/3);//On divise par 3 car 1 unité est 3 fois plus grande avec le zoom 150
     }
     else{//zoom == 50
-        ez_draw_text(ev->win, EZ_TL, 30, 50, "x =%.2lf, y =%.2lf", x/50, y/50);//on divise par 50 car 1 unité = 50 pixels
+        ez_draw_text(ev->win, EZ_TL, 30, 50, "x =%.2lf, y =%.2lf", x, y);
     }
 }
 
