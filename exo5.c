@@ -288,7 +288,7 @@ int main(int argc, char **argv)
                 }
 
 
-                // Calcul de la commission (check la sécurité si on rentre un chiffre négatif)
+                // Calcul de la commission
                 if (turnover == 0)
                     commission = 100;
 
