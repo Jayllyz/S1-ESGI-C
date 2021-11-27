@@ -104,8 +104,8 @@ void win2_on_button_press(Ez_event *ev){
     height /=2;
     x = ev->mx-height; //on retire la hauteur/2 pour corriger le décalage
     y = ev->my-height;
-    
-    if(ev->my !=0) //on transforme en positif (et inversement) car le graphique est "inversé" par rapport à l'origine 
+
+    if(ev->my !=0) //on transforme en positif ce qui devient négatif avec la soustraction
         y *=-1;  //0 est un cas particulier, pas besoin de convertir
 
     x/=50;//on divise par 50 car 1 unité = 50 pixels
