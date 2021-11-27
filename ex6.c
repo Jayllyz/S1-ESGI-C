@@ -39,7 +39,7 @@ void win2_on_expose(Ez_event *ev)
     // Explications des touches
     ez_draw_text(ev->win, EZ_TC, middleW, 1, "[R] : Retour au menu principal");
     ez_draw_text(ev->win, EZ_TC, 100, 1, "[Z] : Zoom avant");
-    ez_draw_text(ev->win, EZ_TC, 100, 30, "Clique gauche/droit -> coordonees");
+    ez_draw_text(ev->win, EZ_TC, 100, 30, "Clique gauche/droit -> coordonnees");
     ez_draw_text(ev->win, EZ_TC, width-100, 1, "[S] : Zoom arriere");
 
     // Détails equations
