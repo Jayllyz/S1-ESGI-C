@@ -30,7 +30,7 @@ int main(int argc, char **arg)
     do
     {
         printf("\nExercice 2 :\n1. Lancer\n2. Quitter\nEntrez votre choix : ");
-        fflush(stdin); // // Purge du buffer d'entrées pour éviter tout conflit. Valable pour tous
+        fflush(stdin); // Purge du buffer d'entrées pour éviter tout conflit. Valable pour tous
         type_check = scanf("%d", &usr_inpt);
         
         
