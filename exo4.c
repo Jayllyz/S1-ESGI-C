@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     int actual_value; // Nombre de l'intervalle en cours de traitement
     // Variables de comptage
     int num_of_1 = 0; // Nombre de 1 dans le nombre binaire
-    int num_of_0 = 0; // Nombre de 0 dans le nombre binaire
+    int num_of_0 = 16; // Nombre de 0 dans le nombre binaire
     long long int j = 1; // Puissance de 10
     int i; // Variable pour boucles & défini le nombre à traiter
     int temp;
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 
     do
     {
-        printf("\nExercic&e 4 :\n1. Lancer\n2. Quitter\nEntrez votre choix : ");
+        printf("\nExercice 4 :\n1. Lancer\n2. Quitter\nEntrez votre choix : ");
         fflush(stdin); // Purge du buffer d'entrées pour éviter tout conflit. Valable pour tous
         type_check = scanf("%d", &usr_inpt);
 
@@ -141,20 +141,21 @@ int main(int argc, char **argv)
                         binary_negative = 0;
                         j = 1;
                         compteur = 0;
-                        // recherche du premier 1 à partir de la droite
+
+                        // Recherche du premier 1 à partir de la droite
                         while (bin % 2 != 1)
                         {
                             j = j*10;
                             compteur++;
                             bin /= 10;
                         }
-                        //si le premier nombre est directement un 1
-                        binary_negative = binary_negative + (bin%10)*j;
+                        // Si le premier nombre est directement un 1
+                        binary_negative = binary_negative + (bin % 10) * j;
                         bin /= 10;
                         j = j*10;
 
 
-                        while(bin > 0)//On inverse les autres bit restants dans bin et on les stocks dans binary_negative
+                        while(bin > 0) // On inverse les autres bits restants dans bin et on les stocke dans binary_negative
                         {
                             if (bin % 2 == 0)
                             {
@@ -172,20 +173,21 @@ int main(int argc, char **argv)
                             }
                             bin /= 10;
                         }
-                        while(compteur < 15)//on compléte ce qu'il reste pour atteindre 2 octets dans binary_negative
+                        while(compteur < 15) // On complète ce qui reste pour atteindre 2 octets dans binary_negative
                         {
                             binary_negative = binary_negative + j;
                             j = j *10;
                             compteur++;
                         }
 
-                        // Calcul du nombre de 1 et 0 dans notre bianire final
+                        // Calcul du nombre de 1 et 0 dans notre binaire final
                         num_of_0 = 16;
                         num_of_1 = 0;
 
-                        while (binary_negative > 0)// on compte le nombre de 1 et 0 dans notre nombre
+                        while (binary_negative > 0) // On compte le nombre de 1 et 0 dans notre nombre
                         {
-                            if(binary_negative % 2 == 0) {
+                            if(binary_negative % 2 == 0)
+                            {
                                 num_of_1++;
                                 num_of_0--;
                             }
@@ -193,7 +195,7 @@ int main(int argc, char **argv)
                         }
                     }
 
-                    //comparaison du nb de 0 et 1 pour savoir si on print ou non
+                    // Comparaison du nb de 0 et 1 pour savoir si on print ou non
                     if (num_of_1 == num_of_0 && goodCounter == 0)
                     {
                         goodValue = actual_value; // Le premier bon nombre est dans goodValue
@@ -201,7 +203,7 @@ int main(int argc, char **argv)
                     }
                     else if (num_of_1 == num_of_0 && goodCounter == 1)
                     {
-                        printf("%d",goodValue); // Le premier bon nombre
+                        printf("Les nombres sympathiques entre a et b sont : %d", goodValue); // Le premier bon nombre
                         goodValue = actual_value;
                         goodCounter++;
                     }
@@ -212,15 +214,15 @@ int main(int argc, char **argv)
                     }
                     // Si on est arrivé au dernier nombre et qu'il est bon
                     if (temp == b_dec && goodCounter > 1)
-                        printf(" et %d", goodValue);
+                        printf(" et %d.", goodValue);
 
                         // Si on trouve qu'un seul bon qui est le dernier
                     else if (num_of_1 == num_of_0  && temp == b_dec && goodCounter == 1)
-                        printf("%d", goodValue);
+                        printf("Le seul nombre sympathique trouv%c entre a et v est : %d.\n", 130, goodValue);
 
                         // Si on trouve qu'un seul bon qui n'est pas le dernier
                     else if (temp == b_dec && goodCounter == 1 && num_of_1 != num_of_0)
-                        printf("%d", goodValue);
+                        printf("Le seul nombre sympathique trouv%c entre a et b est : %d.\n", 130, goodValue);
 
                     // Réinitialisation de l'ensemble des variables pour le prochain cas
                     i = temp;
@@ -234,9 +236,8 @@ int main(int argc, char **argv)
                 }
 
                 if (goodValue == 0)
-                    printf("\nAucun nombre sympatique trouvé dans [%lld, %lld]\n", a_dec, b_dec);
+                    printf("\nAucun nombre sympatique trouv%c dans [%lld, %lld].\n", 130, a_dec, b_dec);
 
-                printf("\n\n");
                 break;
 
                 // 2. Quitter
