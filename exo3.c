@@ -1,5 +1,5 @@
 /*
-    Objectif : Exercice 3
+    Objectif : Construire un terrain selon deux coordonnées et chercher un point
     Auteurs  : Anto BENEDETTI, Antony DAVID, Anthony JABRE
     Date     : 05/11/2021
 */
