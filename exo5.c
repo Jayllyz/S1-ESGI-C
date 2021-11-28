@@ -16,22 +16,22 @@ int main(int argc, char **argv)
     int usr_inpt; // Saisie de l'utilisateur
     unsigned char type_check; // Nombre de valeurs correctement scannées
     unsigned char check_step; // Nombre d'étapes de vérification validées
-    
+
     // Variables relatives à l'exercice
     unsigned char abroad; // 1: à l'étranger, 0: non
-    int work_days; // Jours de travail à l'étranger
-    double salary; // Salaire du commercial
-    double turnover; // Chiffre d'affaire HT réalisé par le commercial
-    double commute; // Distance entre le domicile et le lieu de travail
-    double commission; // Commission reçu selon le CA
-    double indemnity; // Indemnité reçue pour les trajets domicile/lieu de travail
-    
+    int work_days = 0; // Jours de travail à l'étranger
+    double salary = 0; // Salaire du commercial
+    double turnover = 0; // Chiffre d'affaire HT réalisé par le commercial
+    double commute = 0; // Distance entre le domicile et le lieu de travail
+    double commission = 0; // Commission reçu selon le CA
+    double indemnity = 0; // Indemnité reçue pour les trajets domicile/lieu de travail
+
     do
     {
         printf("\nExercice 5 :\n1. Lancer\n2. Quitter\nEntrez votre choix : ");
         fflush(stdin); // Purge du buffer d'entrées pour éviter tout conflit. Valable pour tous
         type_check = scanf("%d", &usr_inpt);
-        
+
         // Vérification de la saisie
         while (check_step != 3)
         {
@@ -113,7 +113,7 @@ int main(int argc, char **argv)
                 }
                 check_step = 0; // Rénitialisation de la variable pour les futures vérifications
 
-                
+
                 printf("Saisissez le CA mensuel HT du commercial : ");
                 fflush(stdin);
                 type_check = scanf("%lf", &turnover);
@@ -155,7 +155,7 @@ int main(int argc, char **argv)
                 }
                 check_step = 0; // Rénitialisation de la variable pour les futures vérifications
 
-                
+
                 printf("Saisissez le trajet du commercial (en km) : ");
                 fflush(stdin);
                 type_check = scanf("%lf", &commute);
@@ -284,7 +284,7 @@ int main(int argc, char **argv)
                     }
                     check_step = 0; // Rénitialisation de la variable pour les futures vérifications
 
-                    
+
                 }
 
 
@@ -294,12 +294,12 @@ int main(int argc, char **argv)
 
                 else if (turnover <= 13000)
                     commission = turnover * 0.016;
-                
+
                 else if (turnover <= 22000)
-                    commission = turnover * 0.022;
-                
+                    commission = ((turnover-13000)*2.2)/100+(13000*0.016);
+
                 else
-                    commission = turnover * 0.03;
+                    commission = ((turnover-22000)*0.03)+(9000*0.022)+(13000*0.016);
 
 
                 // Calcul de l'indemnité de déplacement
@@ -307,7 +307,7 @@ int main(int argc, char **argv)
 
                 if (indemnity < 50)
                     indemnity = 50;
-                
+
                 else if (indemnity > 250)
                     indemnity = 250;
 
@@ -319,7 +319,7 @@ int main(int argc, char **argv)
                 // Calcul du salaire brut mensuel
                 salary = salary + commission + indemnity;
                 printf("\nLe salaire brut mensuel du commercial est %.2lf euros.\n", salary, 0x80);
-                
+
                 break;
 
             case 2:
