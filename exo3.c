@@ -139,7 +139,7 @@ int main(int argc, char **argv){
                         check_step++;
 
                     // Si la valeur est trop petite
-                    if (xb < xa || yb < ya)
+                    if (xb <= xa || yb <= ya)
                     {
                         printf("ERREUR : Vous avez saisi une valeur trop petite.\nVeuillez r%cessayer : ", 130);
                         fflush(stdin);
@@ -263,10 +263,10 @@ int main(int argc, char **argv){
                             if (zone_number_xb == new_xb && zone_number_yb == new_yb)
                             {
                                 if (is_frontier_x_R == 1 && is_frontier_y_down == 0)
-                                    printf("\n\nLe point recherch%c se trouve %d & 2.",130,i );
+                                    printf("\n\nLe point recherch%c se trouve sur la fronti%cre zones %d & 2.", 130, 138, i);
 
                                 else if (is_frontier_x_R == 0 && is_frontier_y_down == 1)
-                                    printf("\n\nLe point recherch%c se trouve zone%d & 4.",130, i);
+                                    printf("\n\nLe point recherch%c se trouve sur la fronti%cre zones %d & 4.", 130, 138, i);
 
                                 else if (is_frontier_x_R == 1 && is_frontier_y_down == 1)
                                     printf("\n\nLe point recherch%c se trouve sur la fronti%cre zones %d, 2, 4 & 5.", 130, 138, i);
