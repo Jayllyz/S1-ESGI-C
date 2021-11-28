@@ -1,6 +1,7 @@
 /*
     Objectif : Chercher les nombres sympatiques entre [a,b]
-    Autheurs : Anto BENEDETTI, Antony DAVID, Anthony JABRE
+    Auteurs  : Anto BENEDETTI, Antony DAVID, Anthony JABRE
+    Date     : 05/11/2021
 */
 #include <stdio.h>
 
