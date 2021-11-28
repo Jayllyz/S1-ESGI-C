@@ -17,8 +17,9 @@ int main(int argc, char **argv)
     unsigned char check_step; // Nombre d'étapes de vérification validées
 
     // Variables relatives à l'exercice
-    int bin;
-
+    int a_dec, b_dec; // Nombre décimal encadrant l'intervalle
+    int bin; // Nombre binaire
+    unsigned char is_negative; // Booléen si un nombre est négatif
 
     do
     {
