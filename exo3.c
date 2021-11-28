@@ -214,7 +214,7 @@ int main(int argc, char **argv){
                 int is_frontier_x_L = 0; // Vaut 1 si le point recherché se trouve à la frontière gauche d'une zone
                 int is_frontier_y_down = 0; // Vaut 1 si le point recherché se trouve à la frontière inférieure d'une zone
 
-                // Boucle afin de trouver dans quelle zone se situe les \nCoordonn%ces du coin sup%crieur gauche : insi quéfi130, 130, nir si il y a des frontières en X
+                // Boucle afin de trouver dans quelle zone se situe les coordonnées à rechercher en X
                 for (int i = xa; i <= width * 2 + xa && find == 0; i = i + width)
                 {
                     if (find_x <= i)
@@ -231,7 +231,7 @@ int main(int argc, char **argv){
                 }
                 find = 0;
 
-                // Boucle afin de trouver dans quelle zone se situe les \nCoordonn%ces du coin sup%crieur gauche : insi quéfi130, 130, nir si il y a des frontières en Y
+                // Boucle afin de trouver dans quelle zone se situe les coordonnées à rechercher en Y
                 for (int j = ya; j <= height * 2 + ya && find == 0; j = j + height) {
                     if (find_y <= j)
                     {
@@ -263,10 +263,10 @@ int main(int argc, char **argv){
                             if (zone_number_xb == new_xb && zone_number_yb == new_yb)
                             {
                                 if (is_frontier_x_R == 1 && is_frontier_y_down == 0)
-                                    printf("\n\nOn se trouve zone %d & 2.", i);
+                                    printf("\n\nLe point recherch%c se trouve %d & 2.",130,i );
 
                                 else if (is_frontier_x_R == 0 && is_frontier_y_down == 1)
-                                    printf("\n\nOn se trouve zone%d & 4.", i);
+                                    printf("\n\nLe point recherch%c se trouve zone%d & 4.",130, i);
 
                                 else if (is_frontier_x_R == 1 && is_frontier_y_down == 1)
                                     printf("\n\nLe point recherch%c se trouve sur la fronti%cre zones %d, 2, 4 & 5.", 130, 138, i);
