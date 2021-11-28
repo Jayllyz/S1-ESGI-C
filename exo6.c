@@ -8,8 +8,8 @@
 
 /*
     Compilation :
-        Linux   : gcc -Wall ex6.c ez-draw.c -o EXEC -lX11 -lXext -lm
-        Windows : gcc -Wall ex6.c ez-draw.c -o EXEC -lgdi32
+        Linux   : gcc -Wall exo6.c ez-draw.c -o exo6.exe -lX11 -lXext -lm
+        Windows : gcc -Wall exo6.c ez-draw.c -o exo6.exe -lgdi32
 */
 
 
@@ -17,9 +17,9 @@
 #include <math.h>
 
 
+// Variables globales
 Ez_window win1; // Fenêtre menu
 Ez_window win2; // Fenêtre courbe
-//variables globales
 int zoom; 
 int bool = 0;
 
@@ -39,7 +39,7 @@ void win2_on_expose(Ez_event *ev)
     // Explications des touches
     ez_draw_text(ev->win, EZ_TC, middleW, 1, "[R] : Retour au menu principal");
     ez_draw_text(ev->win, EZ_TC, 100, 1, "[Z] : Zoom avant");
-    ez_draw_text(ev->win, EZ_TC, 100, 30, "Clique gauche/droit -> coordonnees");
+    ez_draw_text(ev->win, EZ_TC, 150, 30, "Clique gauche/droit -> coordonnees");
     ez_draw_text(ev->win, EZ_TC, width-100, 1, "[S] : Zoom arriere");
 
     // Détails equations
@@ -71,9 +71,10 @@ void win2_on_expose(Ez_event *ev)
     numberGrad = 0;
 
     // Graduation de l'axe des abscisses
-    for (int j = middleW; j <= width-50; j += zoom){
+    for (int j = middleW; j <= width-50; j += zoom)
+    {
         ez_draw_line(ev->win, j, middleH-5, j, middleH+5);
-       if(numberGrad>0)
+        if (numberGrad > 0)
             ez_draw_text(ev->win, EZ_TC, j+10, middleH+5, "%d",numberGrad);
         secondJ -= zoom;
         ez_draw_line(ev->win, secondJ, middleH-5, secondJ, middleH+5);
@@ -92,30 +93,33 @@ void win2_on_expose(Ez_event *ev)
     }
 }
 
-void win2_on_button_press(Ez_event *ev){
+void win2_on_button_press(Ez_event *ev)
+{
+    // Dimension de la fenêtre
+    int width, height;
+    double x, y; // Variable pour les calculs
 
-    int width,height;//taille de la fenêtre
-    double x,y;//variable pour les calculs
-
-    ez_window_get_size(ev->win, &width, &height);//on récupére la taille de la fenêtre
+    ez_window_get_size(ev->win, &width, &height); // Récupération de la taille de la fenêtre
     ez_set_color(ez_white);
-    ez_fill_rectangle (win2, 30, 50, 150, 80);
+    ez_fill_rectangle (win2, 30, 50, 200, 80);
     ez_set_color(ez_red);
-    height /=2;
-    x = ev->mx-height; //on retire la hauteur/2 pour corriger le décalage
-    y = ev->my-height;
 
-    if(ev->my !=0) //on transforme en positif ce qui devient négatif avec la soustraction
-        y *=-1;  //0 est un cas particulier, pas besoin de convertir
+    height /= 2;
 
-    x/=50;//on divise par 50 car 1 unité = 50 pixels
-    y/=50;
-    if(bool==1){//si le zoom == 150
-        ez_draw_text(ev->win, EZ_TL, 30, 50, "x =%.2lf, y =%.2lf", x/3, y/3);//On divise par 3 car 1 unité est 3 fois plus grande avec le zoom 150
-    }
-    else{//zoom == 50
-        ez_draw_text(ev->win, EZ_TL, 30, 50, "x =%.2lf, y =%.2lf", x, y);
-    }
+    x = ev->mx - height; // On retire la hauteur / 2 pour corriger le décalage
+    y = ev->my - height;
+
+    if (ev->my != 0) // On transforme en positif ce qui devient négatif avec la soustraction
+        y *= -1;  // 0 est un cas particulier, pas besoin de convertir
+
+    x /= 50; // On divise par 50 car 1 unité = 50 pixels
+    y /= 50;
+
+    if (bool==1) // Si le zoom == 150
+        ez_draw_text(ev->win, EZ_TL, 50, 50, "x = %.2lf, y = %.2lf", x / 3, y / 3); // On divise par 3 car 1 unité est 3 fois plus grande avec le zoom 150
+    
+    else // Zoom == 50
+        ez_draw_text(ev->win, EZ_TL, 50, 50, "x = %.2lf, y = %.2lf", x, y);
 }
 
 void win2_on_key_press(Ez_event *ev)
@@ -132,9 +136,9 @@ void win2_on_key_press(Ez_event *ev)
         // Lorsque l'utilisateur appuie sur 'Z' --> Zoom avant
         case XK_z:
         case XK_Z:
-            if(bool==1){break;}//pas besoin de refresh la page si on a déjà un zoom de 150
+            if (bool==1) {break;} // Pas besoin de refresh la page si on a déjà un zoom de 150
             zoom = 150;
-            bool =1;
+            bool = 1;
             ez_window_clear(ev->win);
             win2_on_expose(ev);
             break;
@@ -142,9 +146,9 @@ void win2_on_key_press(Ez_event *ev)
         // Lorsque l'utilisateur appuie sur 's' --> Zoom arrière
         case XK_s:
         case XK_S:
-            if(bool==0){break;}//pas besoin de refresh la page si on a déjà un zoom de 50
+            if (bool==0) {break;} // Pas besoin de refresh la page si on a déjà un zoom de 50
             zoom = 50;
-            bool =0;
+            bool = 0;
             ez_window_clear(ev->win);
             win2_on_expose(ev);
             break;
@@ -157,9 +161,9 @@ void win2_on_event(Ez_event *ev)
     zoom = 50;
     switch (ev->type)
     {
-        case Expose  : win2_on_expose   (ev); break;
-        case ButtonPress  : win2_on_button_press (ev);  break;
-        case KeyPress: win2_on_key_press(ev); break;
+        case Expose     : win2_on_expose      (ev); break;
+        case ButtonPress: win2_on_button_press(ev); break;
+        case KeyPress   : win2_on_key_press   (ev); break;
     }
 }
 
