@@ -112,7 +112,7 @@ int main(int argc, char **argv)
                     temp = i;
 
                     // Cas spécial du nombre négatif --> initialisation du bool negative à 1 et transformation en nb positif
-                    if (i <= 0)
+                    if (i < 0)
                     {
                         negative = 1;
                         i *= -1;
@@ -127,13 +127,7 @@ int main(int argc, char **argv)
                         if (rem) // Bit égal à 1
                         {
                             num_of_1++;
-                            compteur++;
-                        }
-
-                        else // Bit égal à 0
-                        {
-                            num_of_0++;
-                            compteur++;
+                            num_of_0--;
                         }
 
                         i /= 2;
@@ -144,88 +138,57 @@ int main(int argc, char **argv)
                     // Traitement du cas négatif
                     if (negative)
                     {
-                        binary_negative = bin;
+                        binary_negative = 0;
+                        j = 1;
+                        compteur = 0;
                         // recherche du premier 0 dans le nombre binaire et sauvegarde de la place du 0 dans find_first_0
-                        while (bin % 2 != 0)
+                        while (bin % 2 != 1)
                         {
-                            find_first_0++;
+                            j = j*10;
+                            compteur++;
                             bin /= 10;
                         }
-                        j = 1;
+                        binary_negative = binary_negative + (bin%10)*j;
+                        bin /= 10;
+                        j = j*10;
 
-                        //boucle permettant de faire +1 a notre nombre binaire et nb sauvegarde dans binary_negative
-                        while (find_first_0 > 0)
-                        {
-                            binary_negative -= j;
-                            j *= 10;
-                            find_first_0--;
-                        }
-                        binary_negative += j;
 
-                        // Boucle de transformation de notre nb binaire en transformant les 1 en 0 et vice-versa
-                        // Valeur récupérée dans binary_switch
-                        num_of_0 = 0;
-                        num_of_1 = 0;
-                        compteur = 0;
-                        while (binary_negative > 0)
+                        while(bin > 0)
                         {
-                            if (binary_negative % 2 == 0)
+                            if (bin % 2 == 0)
                             {
                                 rem = 1;
-                                binary_switch += rem * j;
+                                binary_negative += rem * j;
                                 j = j * 10;
+                                compteur++;
                             }
                             else
                             {
                                 rem = 0;
-                                binary_switch += rem * j;
+                                binary_negative += rem * j;
                                 j = j * 10;
+                                compteur++;
                             }
-                            nb_bit_before++;
-                            binary_negative /= 10;
+                            bin /= 10;
                         }
-
-                        // Check du cas ou l'on fini avec un binary_switch égal a 0
-                        if (binary_switch == 0)
-                            num_of_1++;
-
+                        while(compteur < 15)
+                        {
+                            binary_negative = binary_negative + j;
+                            j = j *10;
+                            compteur++;
+                        }
 
                         // Calcul du nombre de 1 et 0 dans notre bianire final
-                        while (binary_switch > 0)
-                        {
-                            if(binary_switch % 2 == 0) {
-                                num_of_0++;
-                                compteur++;
-                            }
+                        num_of_0 = 16;
+                        num_of_1 = 0;
 
-                            else {
+                        while (binary_negative > 0)
+                        {
+                            if(binary_negative % 2 == 0) {
                                 num_of_1++;
-                                compteur++;
+                                num_of_0--;
                             }
-
-                            binary_switch /= 10;
-                        }
-                    }
-
-                    //récupération du nombre de 0 transformé en 1 au niveau des bit de poids fort
-                    num_of_0 = num_of_0 + (nb_bit_before-compteur);
-                    compteur = compteur + (nb_bit_before-compteur);
-
-                    //ajout des nb de 1 et 0 sur 2 octet
-                    if(negative == 1)
-                    {
-                        while(compteur < 16)
-                        {
-                            compteur++;
-                            num_of_1++;
-                        }
-                    }
-                    else
-                    {
-                        while(compteur < 16)
-                        {
-                            compteur++;
-                            num_of_0++;
+                            binary_negative /= 10;
                         }
                     }
 
@@ -263,12 +226,10 @@ int main(int argc, char **argv)
                     bin = 0;
                     negative = 0;
                     binary_switch = 0;
-                    find_first_0 = 0;
                     j = 1;
-                    num_of_0 = 0;
+                    num_of_0 = 16;
                     num_of_1 = 0;
                     compteur = 0;
-                    nb_bit_before = 0;
                 }
 
                 if (goodValue == 0)
