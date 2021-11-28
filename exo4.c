@@ -90,12 +90,41 @@ int main(int argc, char **argv)
 
 
                 // Vérification de la saisie de "usr_inpt" pour le menu
-                while (type_check != 2)
+                while (check_step != 3)
                 {
-                    printf("ERREUR : Vous avez saisi un caract%cre.\nVeuillez r%cessayer : ", 138, 130);
-                    fflush(stdin);
-                    type_check = scanf("%lld %lld", &a_dec, &b_dec);
+                    check_step = 0; // Rénitialisation de la variable pour répéter le processus de vérification
+
+                    // Si l'utilisateur a saisi un caractère
+                    if (type_check != 2)
+                    {
+                        printf("ERREUR : Vous avez saisi un caract%cre.\nveuillez r%cessayer : ", 138, 130);
+                        fflush(stdin);
+                        type_check = scanf("%lld %lld", &a_dec, &b_dec);
+                    }
+                    else
+                        check_step++;
+
+                    // Si la valeur est trop petite
+                    if (a_dec < -32768 || b_dec < -32768)
+                    {
+                        printf("ERREUR : Vous avez saisi une valeur trop petite.\nveuillez r%cessayer : ", 130);
+                        fflush(stdin);
+                        type_check = scanf("%lld %lld", &a_dec, &b_dec);
+                    }
+                    else
+                        check_step++;
+
+                    // Si la valeur est trop grande
+                    if (a_dec > 65535 || b_dec > 65535)
+                    {
+                        printf("ERREUR : Vous avez saisi une valeur trop grande.\nveuillez r%cessayer : ", 130);
+                        fflush(stdin);
+                        type_check = scanf("%lld %lld", &a_dec, &b_dec);
+                    }
+                    else
+                        check_step++;
                 }
+                check_step = 0; // Rénitialisation de la variable pour les futures vérifications
 
                 // Si a_dec > b_dec, on permute les deux
                 if (a_dec > b_dec)
@@ -218,7 +247,7 @@ int main(int argc, char **argv)
 
                         // Si on trouve qu'un seul bon qui est le dernier
                     else if (num_of_1 == num_of_0  && temp == b_dec && goodCounter == 1)
-                        printf("Le seul nombre sympathique trouv%c entre a et v est : %d.\n", 130, goodValue);
+                        printf("Le seul nombre sympathique trouv%c entre a et b est : %d.\n", 130, goodValue);
 
                         // Si on trouve qu'un seul bon qui n'est pas le dernier
                     else if (temp == b_dec && goodCounter == 1 && num_of_1 != num_of_0)
