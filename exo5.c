@@ -296,10 +296,10 @@ int main(int argc, char **argv)
                     commission = turnover * 0.016;
 
                 else if (turnover <= 22000)
-                    commission = ((turnover-13000)*2.2)/100+(13000*0.016);
+                    commission = ((turnover - 13000) * 2.2) / 100 + (13000 * 0.016);
 
                 else
-                    commission = ((turnover-22000)*0.03)+(9000*0.022)+(13000*0.016);
+                    commission = ((turnover - 22000) * 0.03) + (9000*0.022) + (13000 * 0.016);
 
 
                 // Calcul de l'indemnité de déplacement
@@ -318,7 +318,7 @@ int main(int argc, char **argv)
 
                 // Calcul du salaire brut mensuel
                 salary = salary + commission + indemnity;
-                printf("\nLe salaire brut mensuel du commercial est %.2lf euros.\n", salary, 0x80);
+                printf("\nLe salaire brut mensuel du commercial est %.2lf euros.\n", salary);
 
                 break;
 
