@@ -3,7 +3,6 @@
     Autheurs : Anto BENEDETTI, Antony DAVID, Anthony JABRE
 */
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(int argc, char **argv)
 {
@@ -12,17 +11,17 @@ int main(int argc, char **argv)
     int usr_inpt; // Saisie de l'utilisateur
     unsigned char type_check; // Nombre de valeurs correctement scannées
     unsigned char check_step; // Nombre d'étapes de vérification validées
-    
+
     // Variables relatives à l'exercice
     long long int a_dec; // Premier nombre de l'intervalle
     long long int b_dec; // Dernier nombre de l'intervalle
-    long long int bin; // Nombre binaire
+    long long int bin = 0; // Nombre binaire
     int rem; // Reste des divisions qui correspondent aux bits
     int actual_value; // Nombre de l'intervalle en cours de traitement
     // Variables de comptage
     int num_of_1 = 0; // Nombre de 1 dans le nombre binaire
     int num_of_0 = 0; // Nombre de 0 dans le nombre binaire
-    int j = 1; // Puissance de 10
+    long long int j = 1; // Puissance de 10
     int i; // Variable pour boucles & défini le nombre à traiter
     int temp;
     int goodValue = 0; // Valeurs sympathiques dans l'intervalle
@@ -30,17 +29,20 @@ int main(int argc, char **argv)
     // Variables pour la conversion d'un nb négatif
     unsigned char negative = 0; // 0: nombre négatif, 1: nombre positif
     int find_first_0 = 0;
-    long long int binary_negative; // Nombre binaire signé en négatif
-    int binary_switch = 0;
+    long long int binary_negative = 0; // Nombre binaire signé en négatif
+    long long int binary_switch = 0;
+    int compteur = 0;
+    int nb_bit_before = 0;
+    int nb_bit_after = 0;
 
 
     do
     {
-        printf("\nExercice 4 :\n1. Lancer\n2. Quitter\nEntrez votre choix : ");
+        printf("\nExercic&e 4 :\n1. Lancer\n2. Quitter\nEntrez votre choix : ");
         fflush(stdin); // Purge du buffer d'entrées pour éviter tout conflit. Valable pour tous
         type_check = scanf("%d", &usr_inpt);
-        
-        
+
+
         // Vérification de la saisie de "usr_inpt" pour le menu
         while (check_step != 3)
         {
@@ -85,8 +87,8 @@ int main(int argc, char **argv)
                 printf("\nSaisissez une intervalle [a, b] : ");
                 fflush(stdin);
                 type_check = scanf("%lld %lld", &a_dec, &b_dec);
-                
-                
+
+
                 // Vérification de la saisie de "usr_inpt" pour le menu
                 while (type_check != 2)
                 {
@@ -94,7 +96,7 @@ int main(int argc, char **argv)
                     fflush(stdin);
                     type_check = scanf("%lld %lld", &a_dec, &b_dec);
                 }
-                
+
                 // Si a_dec > b_dec, on permute les deux
                 if (a_dec > b_dec)
                 {
@@ -123,11 +125,17 @@ int main(int argc, char **argv)
                         rem = i % 2;
 
                         if (rem) // Bit égal à 1
+                        {
                             num_of_1++;
-                
+                            compteur++;
+                        }
+
                         else // Bit égal à 0
+                        {
                             num_of_0++;
-        
+                            compteur++;
+                        }
+
                         i /= 2;
                         bin += rem * j;
                         j *= 10;
@@ -158,6 +166,7 @@ int main(int argc, char **argv)
                         // Valeur récupérée dans binary_switch
                         num_of_0 = 0;
                         num_of_1 = 0;
+                        compteur = 0;
                         while (binary_negative > 0)
                         {
                             if (binary_negative % 2 == 0)
@@ -172,24 +181,51 @@ int main(int argc, char **argv)
                                 binary_switch += rem * j;
                                 j = j * 10;
                             }
+                            nb_bit_before++;
                             binary_negative /= 10;
                         }
 
                         // Check du cas ou l'on fini avec un binary_switch égal a 0
                         if (binary_switch == 0)
                             num_of_1++;
-                        
+
 
                         // Calcul du nombre de 1 et 0 dans notre bianire final
                         while (binary_switch > 0)
                         {
-                            if(binary_switch % 2 == 0)
+                            if(binary_switch % 2 == 0) {
                                 num_of_0++;
-                    
-                            else
+                                compteur++;
+                            }
+
+                            else {
                                 num_of_1++;
-                        
+                                compteur++;
+                            }
+
                             binary_switch /= 10;
+                        }
+                    }
+
+                    //récupération du nombre de 0 transformé en 1 au niveau des bit de poids fort
+                    num_of_0 = num_of_0 + (nb_bit_before-compteur);
+                    compteur = compteur + (nb_bit_before-compteur);
+
+                    //ajout des nb de 1 et 0 sur 2 octet
+                    if(negative == 1)
+                    {
+                        while(compteur < 16)
+                        {
+                            compteur++;
+                            num_of_1++;
+                        }
+                    }
+                    else
+                    {
+                        while(compteur < 16)
+                        {
+                            compteur++;
+                            num_of_0++;
                         }
                     }
 
@@ -211,15 +247,15 @@ int main(int argc, char **argv)
                         goodValue = actual_value;
                     }
                     // Si on est arrivé au dernier nombre et qu'il est bon
-                    if (temp == b_dec && goodCounter > 1) 
+                    if (temp == b_dec && goodCounter > 1)
                         printf(" et %d", goodValue);
 
-                    // Si on trouve qu'un seul bon qui est le dernier
-                    else if (num_of_1 == num_of_0  && temp == b_dec && goodCounter == 1) 
+                        // Si on trouve qu'un seul bon qui est le dernier
+                    else if (num_of_1 == num_of_0  && temp == b_dec && goodCounter == 1)
                         printf("%d", goodValue);
-                    
-                    // Si on trouve qu'un seul bon qui n'est pas le dernier
-                    else if (temp == b_dec && goodCounter == 1 && num_of_1 != num_of_0) 
+
+                        // Si on trouve qu'un seul bon qui n'est pas le dernier
+                    else if (temp == b_dec && goodCounter == 1 && num_of_1 != num_of_0)
                         printf("%d", goodValue);
 
                     // Réinitialisation de l'ensemble des variables pour le prochain cas
@@ -231,6 +267,8 @@ int main(int argc, char **argv)
                     j = 1;
                     num_of_0 = 0;
                     num_of_1 = 0;
+                    compteur = 0;
+                    nb_bit_before = 0;
                 }
 
                 if (goodValue == 0)
@@ -239,7 +277,7 @@ int main(int argc, char **argv)
                 printf("\n\n");
                 break;
 
-            // 2. Quitter
+                // 2. Quitter
             case 2:
                 running = 0;
                 break;
