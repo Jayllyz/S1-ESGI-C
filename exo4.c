@@ -141,19 +141,20 @@ int main(int argc, char **argv)
                         binary_negative = 0;
                         j = 1;
                         compteur = 0;
-                        // recherche du premier 0 dans le nombre binaire et sauvegarde de la place du 0 dans find_first_0
+                        // recherche du premier 1 à partir de la droite
                         while (bin % 2 != 1)
                         {
                             j = j*10;
                             compteur++;
                             bin /= 10;
                         }
+                        //si le premier nombre est directement un 1
                         binary_negative = binary_negative + (bin%10)*j;
                         bin /= 10;
                         j = j*10;
 
 
-                        while(bin > 0)
+                        while(bin > 0)//On inverse les autres bit restants dans bin et on les stocks dans binary_negative
                         {
                             if (bin % 2 == 0)
                             {
@@ -171,7 +172,7 @@ int main(int argc, char **argv)
                             }
                             bin /= 10;
                         }
-                        while(compteur < 15)
+                        while(compteur < 15)//on compléte ce qu'il reste pour atteindre 2 octets dans binary_negative
                         {
                             binary_negative = binary_negative + j;
                             j = j *10;
@@ -182,7 +183,7 @@ int main(int argc, char **argv)
                         num_of_0 = 16;
                         num_of_1 = 0;
 
-                        while (binary_negative > 0)
+                        while (binary_negative > 0)// on compte le nombre de 1 et 0 dans notre nombre
                         {
                             if(binary_negative % 2 == 0) {
                                 num_of_1++;
