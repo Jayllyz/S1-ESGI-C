@@ -6,7 +6,6 @@
 
 
 #include <stdio.h>
-#include <stdlib.h>
 
 
 int main(int argc, char **argv){
@@ -17,17 +16,11 @@ int main(int argc, char **argv){
     unsigned char check_step; // Nombre d'étapes de vérification validées
 
     // Variables relatives à l'exercice
-    int i, j; // Variables pour boucles
     // Coordonnées de base
     int xa = 0;
     int ya = 0;
     int xb = 0;
     int yb = 0;
-    // Coordonnées des autres zones à initialiser au fur et à mesure du programme
-    int new_xa = 0;
-    int new_ya = 0;
-    int new_xb = 0;
-    int new_yb = 0;
     // Coordonnées données par l'utilisateur à replacer dans une zone
     int find_x = 0;
     int find_y = 0;
