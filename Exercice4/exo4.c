@@ -29,12 +29,8 @@ int main(int argc, char **argv)
     int goodCounter = 0; // Nombre de valeurs sympathiques dans l'intervalle
     // Variables pour la conversion d'un nb négatif
     unsigned char negative = 0; // 0: nombre négatif, 1: nombre positif
-    int find_first_0 = 0;
     long long int binary_negative = 0; // Nombre binaire signé en négatif
-    long long int binary_switch = 0;
     int compteur = 0;
-    int nb_bit_before = 0;
-    int nb_bit_after = 0;
 
 
     do
@@ -258,7 +254,6 @@ int main(int argc, char **argv)
                     i = temp;
                     bin = 0;
                     negative = 0;
-                    binary_switch = 0;
                     j = 1;
                     num_of_0 = 16;
                     num_of_1 = 0;

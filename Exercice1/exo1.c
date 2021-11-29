@@ -39,7 +39,7 @@ int main(int argc, char **argv)
             // Si l'utilisateur a saisi un caractère
             if (type_check != 1)
             {
-                printf("ERREUR : Vous avez saisi un caract%cre.\nVeuillez saisir soit '1', soit '2' : ", 138, 130);
+                printf("ERREUR : Vous avez saisi un caract%cre.\nVeuillez saisir soit '1', soit '2' : ", 138);
                 fflush(stdin);
                 type_check = scanf("%d", &usr_inpt);
             }
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
             // Si la valeur est trop petite
             if (usr_inpt < 1)
             {
-                printf("ERREUR : Vous avez saisi une valeur trop petite.\nVeuillez saisir soit '1', soit '2' : ", 130);
+                printf("ERREUR : Vous avez saisi une valeur trop petite.\nVeuillez saisir soit '1', soit '2' : ");
                 fflush(stdin);
                 type_check = scanf("%d", &usr_inpt);
             }
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
             // Si la valeur est trop grande
             if (usr_inpt > 2)
             {
-                printf("ERREUR : Vous avez saisi une valeur trop grande.\nVeuillez saisir soit '1', soit '2' : ", 130);
+                printf("ERREUR : Vous avez saisi une valeur trop grande.\nVeuillez saisir soit '1', soit '2' : ");
                 fflush(stdin);
                 type_check = scanf("%d", &usr_inpt);
             }

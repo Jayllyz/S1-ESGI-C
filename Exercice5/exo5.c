@@ -200,7 +200,7 @@ int main(int argc, char **argv)
 
                 printf("Le commercial se trouve t-il %c l'etranger ? [1] = Oui, [0] = Non : ", 133);
                 fflush(stdin);
-                type_check = scanf("%d", &abroad);
+                type_check = scanf("%hhd", &abroad);
 
                 // Vérification de la saisie
                 while (check_step != 3)
@@ -212,7 +212,7 @@ int main(int argc, char **argv)
                     {
                         printf("ERREUR : Vous avez saisi un caract%cre.\nVeuillez r%cessayer : ", 138, 130);
                         fflush(stdin);
-                        type_check = scanf("%d", &abroad);
+                        type_check = scanf("%hhd", &abroad);
                     }
                     else
                         check_step++;
@@ -222,7 +222,7 @@ int main(int argc, char **argv)
                     {
                         printf("ERREUR : Vous avez saisi une valeur trop petite.\nVeuillez r%cessayer : ", 130);
                         fflush(stdin);
-                        type_check = scanf("%d", &abroad);
+                        type_check = scanf("%hhd", &abroad);
                     }
                     else
                         check_step++;
@@ -232,7 +232,7 @@ int main(int argc, char **argv)
                     {
                         printf("ERREUR : Vous avez saisi une valeur trop grande.\nVeuillez r%cessayer : ", 130);
                         fflush(stdin);
-                        type_check = scanf("%d", &abroad);
+                        type_check = scanf("%hhd", &abroad);
                     }
                     else
                         check_step++;
