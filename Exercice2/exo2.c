@@ -24,7 +24,7 @@ int main(int argc, char **arg)
     unsigned char digit2; // Deuxième chiffre du nombre
     unsigned char test_digit; // Sélection du chiffre à traiter
     unsigned char bars_sum; // Somme des barres des deux chiffres 
-    unsigned char is_good; // Egal à 1 si le nombre est magique
+    unsigned char is_good=0; // Egal à 1 si le nombre est magique
 
     // Boucle principale permettant de répéter le programme
     do
